@@ -1,0 +1,1734 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RecToken Investidores - Retornos Atrativos com Recebíveis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1e3a8a",
+              secondary: "#1e40af",
+              accent: "#3b82f6",
+              dark: "#0f172a",
+              "blue-950": "#172554",
+            },
+            fontFamily: {
+              sans: ["Inter", "system-ui", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .gradient-bg {
+        background: linear-gradient(
+          135deg,
+          #0f172a 0%,
+          #1e3a8a 50%,
+          #1e40af 100%
+        );
+      }
+      .tech-pattern {
+        background-image: radial-gradient(
+            circle at 25% 25%,
+            rgba(59, 130, 246, 0.1) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 75% 75%,
+            rgba(30, 64, 175, 0.1) 0%,
+            transparent 50%
+          );
+      }
+      .glassmorphism {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      .floating {
+        animation: float 6s ease-in-out infinite;
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-15px);
+        }
+      }
+      .fade-in {
+        animation: fadeIn 0.8s ease-out;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body class="font-sans antialiased bg-white">
+    <!-- Navigation -->
+    <nav
+      class="fixed w-full z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <a
+            href="index.html"
+            class="flex items-center space-x-3 hover:opacity-80 transition-opacity"
+          >
+            <div
+              class="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center"
+            >
+              <svg
+                class="w-6 h-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 10V3L4 14h7v7l9-11h-7z"
+                ></path>
+              </svg>
+            </div>
+            <div>
+              <span class="text-2xl font-bold text-primary">RecToken</span>
+              <span
+                class="ml-2 bg-green-600 text-white px-2 py-1 text-xs rounded-full font-medium"
+                >INVESTIDORES</span
+              >
+            </div>
+          </a>
+
+          <div class="hidden md:flex items-center space-x-6">
+            <a
+              href="#oportunidades"
+              class="text-gray-700 hover:text-primary transition-colors font-medium"
+              >Oportunidades</a
+            >
+            <a
+              href="#retornos"
+              class="text-gray-700 hover:text-primary transition-colors font-medium"
+              >Retornos</a
+            >
+            <a
+              href="#calculadora"
+              class="text-gray-700 hover:text-primary transition-colors font-medium"
+              >Calcular</a
+            >
+            <a
+              href="#portfolio"
+              class="text-gray-700 hover:text-primary transition-colors font-medium"
+              >Portfólio</a
+            >
+            <a
+              href="pme.html"
+              class="text-gray-700 hover:text-primary transition-colors font-medium"
+              >Para PMEs</a
+            >
+          </div>
+
+          <div class="flex items-center space-x-4">
+            <button
+              class="hidden md:block text-primary hover:text-secondary font-medium"
+            >
+              Suporte
+            </button>
+            <button
+              class="bg-primary text-white px-6 py-2 rounded-lg hover:bg-secondary transition-colors font-semibold"
+            >
+              Começar a Investir
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-16 min-h-screen gradient-bg relative overflow-hidden">
+      <div class="tech-pattern absolute inset-0"></div>
+      <div class="absolute inset-0 bg-black/10"></div>
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
+        <div class="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
+          <div class="text-white fade-in">
+            <div
+              class="inline-flex items-center px-4 py-2 rounded-full bg-white/20 border border-white/30 mb-6"
+            >
+              <span class="text-sm font-medium"
+                >📈 Regulamentado pela CVM • Tokens Seguros • Retornos
+                Reais</span
+              >
+            </div>
+
+            <h1 class="text-5xl lg:text-7xl font-bold leading-tight mb-6">
+              Invista em
+              <span
+                class="bg-gradient-to-r from-green-300 to-white bg-clip-text text-transparent"
+                >Recebíveis</span
+              >
+              de PMEs
+            </h1>
+
+            <p class="text-xl text-blue-100 mb-8 leading-relaxed">
+              Diversifique seu portfólio com uma nova classe de ativos. Invista
+              em recebíveis de PMEs selecionadas e obtenha retornos superiores
+              ao CDI com baixo risco.
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+              <div class="glassmorphism rounded-lg p-4 text-center">
+                <div class="text-2xl font-bold text-white">18-24%</div>
+                <div class="text-sm text-blue-200">Retorno anual</div>
+              </div>
+              <div class="glassmorphism rounded-lg p-4 text-center">
+                <div class="text-2xl font-bold text-white">R$ 100</div>
+                <div class="text-sm text-blue-200">Investimento mínimo</div>
+              </div>
+              <div class="glassmorphism rounded-lg p-4 text-center">
+                <div class="text-2xl font-bold text-white"><2%</div>
+                <div class="text-sm text-blue-200">Taxa inadimplência</div>
+              </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4">
+              <button
+                onclick="scrollToSection('calculadora')"
+                class="bg-white text-primary px-8 py-4 rounded-lg text-lg font-bold hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg"
+              >
+                💰 Simular Investimento
+              </button>
+              <button
+                onclick="scrollToSection('oportunidades')"
+                class="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-primary transition-all"
+              >
+                Ver Oportunidades
+              </button>
+            </div>
+
+            <div class="mt-8 flex items-center space-x-6 text-sm text-blue-200">
+              <div class="flex items-center">
+                <svg
+                  class="w-5 h-5 text-green-400 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Liquidez diária
+              </div>
+              <div class="flex items-center">
+                <svg
+                  class="w-5 h-5 text-green-400 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Sem taxa de entrada
+              </div>
+              <div class="flex items-center">
+                <svg
+                  class="w-5 h-5 text-green-400 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Transparência total
+              </div>
+            </div>
+          </div>
+
+          <div class="relative">
+            <!-- Investment Simulator Card -->
+            <div
+              class="floating glassmorphism rounded-2xl p-8 backdrop-blur-lg"
+            >
+              <h3 class="text-2xl font-bold text-white mb-6 text-center">
+                Simulador de Rendimento
+              </h3>
+
+              <div class="space-y-4">
+                <div>
+                  <label class="block text-white text-sm mb-2"
+                    >Valor do Investimento</label
+                  >
+                  <input
+                    type="number"
+                    id="valorInvestimentoHero"
+                    value="5000"
+                    min="100"
+                    class="w-full px-4 py-3 rounded-lg bg-white/20 text-white placeholder-blue-200 border border-white/30 focus:ring-2 focus:ring-white/50 focus:border-white/50"
+                    placeholder="R$ 5.000"
+                  />
+                </div>
+
+                <div>
+                  <label class="block text-white text-sm mb-2"
+                    >Prazo do Investimento</label
+                  >
+                  <select
+                    id="prazoInvestimentoHero"
+                    class="w-full px-4 py-3 rounded-lg bg-white/20 text-white border border-white/30 focus:ring-2 focus:ring-white/50"
+                  >
+                    <option value="30" class="text-black">30 dias</option>
+                    <option value="60" selected class="text-black">
+                      60 dias
+                    </option>
+                    <option value="90" class="text-black">90 dias</option>
+                    <option value="120" class="text-black">120 dias</option>
+                  </select>
+                </div>
+
+                <div
+                  class="bg-green-500/20 border border-green-400/30 rounded-lg p-4"
+                >
+                  <div class="text-center">
+                    <div class="text-green-200 text-sm mb-1">
+                      Rendimento Projetado
+                    </div>
+                    <div
+                      id="rendimentoProjetadoHero"
+                      class="text-3xl font-bold text-green-400"
+                    >
+                      R$ 5.300
+                    </div>
+                    <div class="text-green-300 text-sm mt-1">
+                      Retorno: <span id="percentualRetornoHero">6%</span> no
+                      período
+                    </div>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 text-sm">
+                  <div class="bg-white/10 rounded-lg p-3 text-center">
+                    <div class="text-blue-200">Poupança</div>
+                    <div
+                      id="poupancaComparacaoHero"
+                      class="text-white font-bold"
+                    >
+                      R$ 5.025
+                    </div>
+                  </div>
+                  <div class="bg-white/10 rounded-lg p-3 text-center">
+                    <div class="text-blue-200">CDB 100% CDI</div>
+                    <div id="cdbComparacaoHero" class="text-white font-bold">
+                      R$ 5.122
+                    </div>
+                  </div>
+                </div>
+
+                <button
+                  onclick="calcularRendimentoHero()"
+                  class="w-full bg-white text-primary py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+                >
+                  Recalcular
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Investment Opportunities Section -->
+    <section id="oportunidades" class="py-20 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">
+            Oportunidades de Investimento Disponíveis
+          </h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Explore recebíveis de PMEs selecionadas por nossa IA, com diferentes
+            prazos, setores e retornos.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 mb-12">
+          <!-- Opportunity 1 -->
+          <div
+            class="bg-white rounded-2xl p-6 shadow-lg border border-gray-200 hover:shadow-xl transition-shadow"
+          >
+            <div class="flex justify-between items-start mb-4">
+              <div>
+                <h3 class="text-lg font-bold text-gray-900">E-commerce Moda</h3>
+                <p class="text-sm text-gray-600">São Paulo • Fundada em 2019</p>
+              </div>
+              <div
+                class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium"
+              >
+                Risco Baixo
+              </div>
+            </div>
+
+            <div class="space-y-3 mb-6">
+              <div class="flex justify-between">
+                <span class="text-gray-600">Valor disponível:</span>
+                <span class="font-semibold text-gray-900">R$ 45.000</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-600">Prazo:</span>
+                <span class="font-semibold text-gray-900">75 dias</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-600">Retorno:</span>
+                <span class="font-semibold text-green-600">22% a.a.</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-600">Score IA:</span>
+                <span class="font-semibold text-blue-600">9.2/10</span>
+              </div>
+            </div>
+
+            <div class="bg-gray-100 rounded-lg p-3 mb-4">
+              <div class="flex justify-between text-sm">
+                <span class="text-gray-600">Progresso:</span>
+                <span class="text-gray-900 font-medium"
+                  >R$ 27.000 / R$ 45.000</span
+                >
+              </div>
+              <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+                <div
+                  class="bg-primary rounded-full h-2"
+                  style="width: 60%"
+                ></div>
+              </div>
+            </div>
+
+            <button
+              class="w-full bg-primary text-white py-2 rounded-lg font-medium hover:bg-secondary transition-colors"
+            >
+              Investir Agora
+            </button>
+          </div>
+
+          <!-- Opportunity 2 -->
+          <div
+            class="bg-white rounded-2xl p-6 shadow-lg border border-gray-200 hover:shadow-xl transition-shadow"
+          >
+            <div class="flex justify-between items-start mb-4">
+              <div>
+                <h3 class="text-lg font-bold text-gray-900">
+                  Distribuidora Alimentos
+                </h3>
+                <p class="text-sm text-gray-600">
+                  Rio de Janeiro • Fundada em 2015
+                </p>
+              </div>
+              <div
+                class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs font-medium"
+              >
+                Risco Médio
+              </div>
+            </div>
+
+            <div class="space-y-3 mb-6">
+              <div class="flex justify-between">
+                <span class="text-gray-600">Valor disponível:</span>
+                <span class="font-semibold text-gray-900">R$ 80.000</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-600">Prazo:</span>
+                <span class="font-semibold text-gray-900">45 dias</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-600">Retorno:</span>
+                <span class="font-semibold text-green-600">25% a.a.</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-600">Score IA:</span>
+                <span class="font-semibold text-blue-600">8.7/10</span>
+              </div>
+            </div>
+
+            <div class="bg-gray-100 rounded-lg p-3 mb-4">
+              <div class="flex justify-between text-sm">
+                <span class="text-gray-600">Progresso:</span>
+                <span class="text-gray-900 font-medium"
+                  >R$ 12.000 / R$ 80.000</span
+                >
+              </div>
+              <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+                <div
+                  class="bg-primary rounded-full h-2"
+                  style="width: 15%"
+                ></div>
+              </div>
+            </div>
+
+            <button
+              class="w-full bg-primary text-white py-2 rounded-lg font-medium hover:bg-secondary transition-colors"
+            >
+              Investir Agora
+            </button>
+          </div>
+
+          <!-- Opportunity 3 -->
+          <div
+            class="bg-white rounded-2xl p-6 shadow-lg border border-gray-200 hover:shadow-xl transition-shadow"
+          >
+            <div class="flex justify-between items-start mb-4">
+              <div>
+                <h3 class="text-lg font-bold text-gray-900">Consultoria TI</h3>
+                <p class="text-sm text-gray-600">
+                  Belo Horizonte • Fundada em 2020
+                </p>
+              </div>
+              <div
+                class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium"
+              >
+                Risco Baixo
+              </div>
+            </div>
+
+            <div class="space-y-3 mb-6">
+              <div class="flex justify-between">
+                <span class="text-gray-600">Valor disponível:</span>
+                <span class="font-semibold text-gray-900">R$ 25.000</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-600">Prazo:</span>
+                <span class="font-semibold text-gray-900">90 dias</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-600">Retorno:</span>
+                <span class="font-semibold text-green-600">20% a.a.</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-600">Score IA:</span>
+                <span class="font-semibold text-blue-600">9.5/10</span>
+              </div>
+            </div>
+
+            <div class="bg-gray-100 rounded-lg p-3 mb-4">
+              <div class="flex justify-between text-sm">
+                <span class="text-gray-600">Progresso:</span>
+                <span class="text-gray-900 font-medium"
+                  >R$ 22.500 / R$ 25.000</span
+                >
+              </div>
+              <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+                <div
+                  class="bg-primary rounded-full h-2"
+                  style="width: 90%"
+                ></div>
+              </div>
+            </div>
+
+            <button
+              class="w-full bg-gray-300 text-gray-600 py-2 rounded-lg font-medium cursor-not-allowed"
+            >
+              Quase Esgotado
+            </button>
+          </div>
+        </div>
+
+        <!-- Filters and Search -->
+        <div class="bg-white rounded-2xl p-6 shadow-lg">
+          <h3 class="text-xl font-bold text-gray-900 mb-4">
+            Filtrar Oportunidades
+          </h3>
+          <div class="grid md:grid-cols-4 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2"
+                >Setor</label
+              >
+              <select
+                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary"
+              >
+                <option value="">Todos os setores</option>
+                <option value="comercio">Comércio</option>
+                <option value="servicos">Serviços</option>
+                <option value="tecnologia">Tecnologia</option>
+                <option value="alimentacao">Alimentação</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2"
+                >Prazo</label
+              >
+              <select
+                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary"
+              >
+                <option value="">Qualquer prazo</option>
+                <option value="30">Até 30 dias</option>
+                <option value="60">Até 60 dias</option>
+                <option value="90">Até 90 dias</option>
+                <option value="120">Mais de 90 dias</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2"
+                >Risco</label
+              >
+              <select
+                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary"
+              >
+                <option value="">Qualquer risco</option>
+                <option value="baixo">Baixo</option>
+                <option value="medio">Médio</option>
+                <option value="alto">Alto</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2"
+                >Valor Mínimo</label
+              >
+              <input
+                type="number"
+                placeholder="R$ 100"
+                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary"
+              />
+            </div>
+          </div>
+          <div class="mt-4 flex justify-between items-center">
+            <p class="text-gray-600">
+              Mostrando 3 de 47 oportunidades disponíveis
+            </p>
+            <button
+              class="bg-primary text-white px-6 py-2 rounded-lg hover:bg-secondary transition-colors"
+            >
+              Aplicar Filtros
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Returns Comparison Section -->
+    <section id="retornos" class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">
+            Compare os Retornos
+          </h2>
+          <p class="text-xl text-gray-600">
+            Veja como a RecToken supera investimentos tradicionais
+          </p>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <div class="space-y-6">
+              <!-- Poupança -->
+              <div class="bg-red-50 border-l-4 border-red-400 p-6 rounded-lg">
+                <div class="flex justify-between items-center mb-3">
+                  <h3 class="text-lg font-bold text-gray-900">Poupança</h3>
+                  <span class="text-red-600 text-2xl">😴</span>
+                </div>
+                <div class="grid grid-cols-2 gap-4 text-sm">
+                  <div>
+                    <span class="text-gray-600">Rentabilidade:</span>
+                    <span class="ml-2 font-semibold text-red-600"
+                      >15-22,5%</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <!-- RecToken -->
+              <div
+                class="bg-green-50 border-l-4 border-green-400 p-6 rounded-lg"
+              >
+                <div class="flex justify-between items-center mb-3">
+                  <h3 class="text-lg font-bold text-gray-900">RecToken</h3>
+                  <span class="text-green-600 text-2xl">🚀</span>
+                </div>
+                <div class="grid grid-cols-2 gap-4 text-sm">
+                  <div>
+                    <span class="text-gray-600">Rentabilidade:</span>
+                    <span class="ml-2 font-semibold text-green-600"
+                      >18-24% a.a.</span
+                    >
+                  </div>
+                  <div>
+                    <span class="text-gray-600">Liquidez:</span>
+                    <span class="ml-2 font-semibold">Mercado secundário</span>
+                  </div>
+                  <div>
+                    <span class="text-gray-600">Risco:</span>
+                    <span class="ml-2 font-semibold text-yellow-600"
+                      >Baixo/Médio</span
+                    >
+                  </div>
+                  <div>
+                    <span class="text-gray-600">IR:</span>
+                    <span class="ml-2 font-semibold text-yellow-600"
+                      >15% (tabela)</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="relative">
+            <div class="bg-gray-50 rounded-2xl p-8">
+              <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">
+                Simulação de R$ 10.000 em 1 ano
+              </h3>
+
+              <div class="space-y-4">
+                <div
+                  class="flex justify-between items-center p-4 bg-white rounded-lg"
+                >
+                  <span class="font-medium text-gray-900">Poupança</span>
+                  <span class="text-xl font-bold text-red-600">R$ 10.617</span>
+                </div>
+
+                <div
+                  class="flex justify-between items-center p-4 bg-white rounded-lg"
+                >
+                  <span class="font-medium text-gray-900">CDB 100% CDI</span>
+                  <span class="text-xl font-bold text-yellow-600"
+                    >R$ 11.181</span
+                  >
+                </div>
+
+                <div
+                  class="flex justify-between items-center p-4 bg-green-100 rounded-lg border-2 border-green-400"
+                >
+                  <span class="font-medium text-gray-900">RecToken</span>
+                  <span class="text-xl font-bold text-green-600"
+                    >R$ 12.100</span
+                  >
+                </div>
+              </div>
+
+              <div
+                class="mt-6 bg-primary rounded-lg p-4 text-center text-white"
+              >
+                <div class="text-lg font-bold">Vantagem RecToken</div>
+                <div class="text-2xl font-bold">+R$ 919</div>
+                <div class="text-sm opacity-90">vs CDB em 1 ano</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Investment Calculator -->
+    <section id="calculadora" class="py-20 gradient-bg relative">
+      <div class="tech-pattern absolute inset-0"></div>
+      <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold text-white mb-4">
+            Calculadora de Investimento
+          </h2>
+          <p class="text-xl text-blue-100">
+            Simule seus retornos com diferentes valores e prazos
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-8 shadow-2xl">
+          <div class="grid lg:grid-cols-2 gap-8">
+            <!-- Input Section -->
+            <div>
+              <h3 class="text-2xl font-bold text-gray-900 mb-6">
+                Parâmetros do Investimento
+              </h3>
+              <div class="space-y-6">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">
+                    Valor a Investir (R$)
+                  </label>
+                  <input
+                    type="number"
+                    id="valorInvestir"
+                    value="5000"
+                    min="100"
+                    max="100000"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg"
+                    placeholder="Ex: 5000"
+                  />
+                </div>
+
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">
+                    Prazo do Investimento
+                  </label>
+                  <select
+                    id="prazoInvestir"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg"
+                  >
+                    <option value="30">30 dias</option>
+                    <option value="60" selected>60 dias</option>
+                    <option value="90">90 dias</option>
+                    <option value="120">120 dias</option>
+                    <option value="180">180 dias</option>
+                    <option value="365">1 ano</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">
+                    Perfil de Risco
+                  </label>
+                  <select
+                    id="perfilRisco"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg"
+                  >
+                    <option value="conservador">
+                      Conservador (18-20% a.a.)
+                    </option>
+                    <option value="moderado" selected>
+                      Moderado (20-22% a.a.)
+                    </option>
+                    <option value="agressivo">Agressivo (22-24% a.a.)</option>
+                  </select>
+                </div>
+
+                <button
+                  onclick="calcularInvestimento()"
+                  class="w-full bg-primary text-white py-4 rounded-lg text-lg font-semibold hover:bg-secondary transition-colors shadow-lg"
+                >
+                  💰 Calcular Retorno
+                </button>
+              </div>
+            </div>
+
+            <!-- Results Section -->
+            <div>
+              <h3 class="text-2xl font-bold text-gray-900 mb-6">
+                Projeção de Retornos
+              </h3>
+              <div class="space-y-6">
+                <!-- RecToken Result -->
+                <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+                  <h4
+                    class="font-bold text-green-800 text-lg mb-4 flex items-center"
+                  >
+                    <span class="text-2xl mr-2">🚀</span>
+                    RecToken
+                  </h4>
+                  <div class="space-y-2">
+                    <div class="flex justify-between">
+                      <span class="text-gray-700">Valor investido:</span>
+                      <span id="rec-investido" class="font-semibold"
+                        >R$ 5.000</span
+                      >
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-gray-700">Rendimento:</span>
+                      <span
+                        id="rec-rendimento"
+                        class="font-semibold text-green-600"
+                        >+ R$ 300</span
+                      >
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-gray-700">IR (15%):</span>
+                      <span id="rec-ir" class="font-semibold text-red-600"
+                        >- R$ 45</span
+                      >
+                    </div>
+                    <div
+                      class="flex justify-between pt-2 border-t border-green-200"
+                    >
+                      <span class="font-bold text-gray-900"
+                        >Valor líquido:</span
+                      >
+                      <span
+                        id="rec-liquido"
+                        class="font-bold text-green-600 text-xl"
+                        >R$ 5.255</span
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Traditional Comparison -->
+                <div class="space-y-4">
+                  <div
+                    class="bg-yellow-50 border border-yellow-200 rounded-lg p-4"
+                  >
+                    <div class="flex justify-between items-center">
+                      <span class="font-medium text-gray-900"
+                        >CDB 100% CDI</span
+                      >
+                      <span id="cdb-resultado" class="font-bold text-yellow-600"
+                        >R$ 5.122</span
+                      >
+                    </div>
+                  </div>
+
+                  <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+                    <div class="flex justify-between items-center">
+                      <span class="font-medium text-gray-900">Poupança</span>
+                      <span
+                        id="poupanca-resultado"
+                        class="font-bold text-red-600"
+                        >R$ 5.051</span
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Advantage -->
+                <div
+                  class="bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg p-6 text-center text-white"
+                >
+                  <div class="text-white font-bold text-xl mb-2">
+                    💰 Sua Vantagem
+                  </div>
+                  <div
+                    id="vantagem-total"
+                    class="text-4xl font-bold text-white mb-2"
+                  >
+                    +R$ 133
+                  </div>
+                  <div class="text-blue-100 text-sm">
+                    vs CDB no período de
+                    <span id="periodo-vantagem" class="font-semibold"
+                      >60 dias</span
+                    >
+                  </div>
+                  <div class="mt-4 bg-white/20 rounded-lg p-3">
+                    <div class="text-white text-sm">
+                      💡 Rentabilidade anual:
+                      <span id="rentabilidade-anual" class="font-bold"
+                        >21% a.a.</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfolio Diversification -->
+    <section id="portfolio" class="py-20 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">
+            Diversificação Inteligente
+          </h2>
+          <p class="text-xl text-gray-600">
+            Construa um portfólio balanceado com diferentes setores e prazos
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-6">
+              Estratégias de Diversificação
+            </h3>
+
+            <div class="space-y-6">
+              <div class="flex items-start space-x-4">
+                <div
+                  class="w-8 h-8 bg-primary rounded-full flex items-center justify-center flex-shrink-0"
+                >
+                  <span class="text-white font-bold">1</span>
+                </div>
+                <div>
+                  <h4 class="text-lg font-bold text-gray-900 mb-2">
+                    Diversificação Setorial
+                  </h4>
+                  <p class="text-gray-600">
+                    Distribua seus investimentos entre diferentes setores
+                    (comércio, serviços, tecnologia) para reduzir riscos
+                    específicos de cada indústria.
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-start space-x-4">
+                <div
+                  class="w-8 h-8 bg-accent rounded-full flex items-center justify-center flex-shrink-0"
+                >
+                  <span class="text-white font-bold">2</span>
+                </div>
+                <div>
+                  <h4 class="text-lg font-bold text-gray-900 mb-2">
+                    Escalonamento de Prazos
+                  </h4>
+                  <p class="text-gray-600">
+                    Invista em recebíveis com vencimentos diferentes (30, 60, 90
+                    dias) para ter fluxo de caixa constante e flexibilidade.
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-start space-x-4">
+                <div
+                  class="w-8 h-8 bg-secondary rounded-full flex items-center justify-center flex-shrink-0"
+                >
+                  <span class="text-white font-bold">3</span>
+                </div>
+                <div>
+                  <h4 class="text-lg font-bold text-gray-900 mb-2">
+                    Balanceamento de Risco
+                  </h4>
+                  <p class="text-gray-600">
+                    Combine investimentos de baixo risco (score IA alto) com
+                    médio risco para otimizar retorno sem comprometer segurança.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="relative">
+            <div class="bg-white rounded-2xl p-8 shadow-lg">
+              <h3 class="text-xl font-bold text-gray-900 mb-6 text-center">
+                Portfólio Modelo - R$ 10.000
+              </h3>
+
+              <div class="space-y-4">
+                <!-- Allocation 1 -->
+                <div class="bg-blue-50 rounded-lg p-4">
+                  <div class="flex justify-between items-center mb-2">
+                    <span class="font-medium text-gray-900"
+                      >Comércio (40%)</span
+                    >
+                    <span class="font-bold text-blue-600">R$ 4.000</span>
+                  </div>
+                  <div class="w-full bg-blue-200 rounded-full h-2">
+                    <div
+                      class="bg-blue-600 rounded-full h-2"
+                      style="width: 40%"
+                    ></div>
+                  </div>
+                  <div class="text-xs text-gray-600 mt-1">
+                    Risco baixo • 30-60 dias
+                  </div>
+                </div>
+
+                <!-- Allocation 2 -->
+                <div class="bg-green-50 rounded-lg p-4">
+                  <div class="flex justify-between items-center mb-2">
+                    <span class="font-medium text-gray-900"
+                      >Serviços (35%)</span
+                    >
+                    <span class="font-bold text-green-600">R$ 3.500</span>
+                  </div>
+                  <div class="w-full bg-green-200 rounded-full h-2">
+                    <div
+                      class="bg-green-600 rounded-full h-2"
+                      style="width: 35%"
+                    ></div>
+                  </div>
+                  <div class="text-xs text-gray-600 mt-1">
+                    Risco médio • 45-90 dias
+                  </div>
+                </div>
+
+                <!-- Allocation 3 -->
+                <div class="bg-purple-50 rounded-lg p-4">
+                  <div class="flex justify-between items-center mb-2">
+                    <span class="font-medium text-gray-900"
+                      >Tecnologia (25%)</span
+                    >
+                    <span class="font-bold text-purple-600">R$ 2.500</span>
+                  </div>
+                  <div class="w-full bg-purple-200 rounded-full h-2">
+                    <div
+                      class="bg-purple-600 rounded-full h-2"
+                      style="width: 25%"
+                    ></div>
+                  </div>
+                  <div class="text-xs text-gray-600 mt-1">
+                    Risco baixo • 60-120 dias
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-6 bg-gray-100 rounded-lg p-4">
+                <div class="text-center">
+                  <div class="text-sm text-gray-600 mb-1">Retorno Esperado</div>
+                  <div class="text-2xl font-bold text-gray-900">21,5% a.a.</div>
+                  <div class="text-sm text-gray-600">Risco Balanceado</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">
+            Por que Investir na RecToken?
+          </h2>
+          <p class="text-xl text-gray-600">
+            Todas as vantagens de uma nova classe de investimentos
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div
+            class="text-center p-6 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl"
+          >
+            <div class="text-4xl mb-4">📈</div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">
+              Retornos Superiores
+            </h3>
+            <p class="text-gray-600">
+              18-24% ao ano, superando CDB, poupança e a maioria dos fundos de
+              investimento.
+            </p>
+          </div>
+
+          <div
+            class="text-center p-6 bg-gradient-to-br from-green-50 to-green-100 rounded-2xl"
+          >
+            <div class="text-4xl mb-4">🛡️</div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">
+              Risco Controlado
+            </h3>
+            <p class="text-gray-600">
+              IA seleciona apenas PMEs com histórico comprovado. Taxa de
+              inadimplência abaixo de 2%.
+            </p>
+          </div>
+
+          <div
+            class="text-center p-6 bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl"
+          >
+            <div class="text-4xl mb-4">💰</div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">
+              Baixo Investimento Inicial
+            </h3>
+            <p class="text-gray-600">
+              Comece com apenas R$ 100. Democratizamos o acesso a uma classe de
+              ativos antes restrita.
+            </p>
+          </div>
+
+          <div
+            class="text-center p-6 bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-2xl"
+          >
+            <div class="text-4xl mb-4">🔄</div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">
+              Liquidez Diária
+            </h3>
+            <p class="text-gray-600">
+              Mercado secundário permite venda de tokens antes do vencimento,
+              oferecendo flexibilidade.
+            </p>
+          </div>
+
+          <div
+            class="text-center p-6 bg-gradient-to-br from-pink-50 to-pink-100 rounded-2xl"
+          >
+            <div class="text-4xl mb-4">🔍</div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">
+              Transparência Total
+            </h3>
+            <p class="text-gray-600">
+              Blockchain garante rastreabilidade completa. Veja em tempo real o
+              status de cada investimento.
+            </p>
+          </div>
+
+          <div
+            class="text-center p-6 bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-2xl"
+          >
+            <div class="text-4xl mb-4">🎯</div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">
+              Diversificação Inteligente
+            </h3>
+            <p class="text-gray-600">
+              Invista em múltiplos recebíveis de diferentes setores e prazos com
+              poucos cliques.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 bg-gray-50">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">
+            Perguntas Frequentes para Investidores
+          </h2>
+          <p class="text-xl text-gray-600">
+            Tire suas dúvidas sobre investimento em recebíveis tokenizados
+          </p>
+        </div>
+
+        <div class="space-y-6">
+          <div class="bg-white rounded-lg p-6 shadow-md">
+            <h3 class="text-lg font-semibold text-gray-900 mb-3">
+              Como funciona o investimento em recebíveis tokenizados?
+            </h3>
+            <p class="text-gray-600">
+              Você compra tokens que representam frações de recebíveis de PMEs.
+              Quando a PME recebe o pagamento do cliente, você recebe
+              automaticamente seu retorno proporcional ao investimento.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-lg p-6 shadow-md">
+            <h3 class="text-lg font-semibold text-gray-900 mb-3">
+              Qual é o risco do investimento?
+            </h3>
+            <p class="text-gray-600">
+              O principal risco é a inadimplência - se o cliente da PME não
+              pagar. Nossa IA analisa rigorosamente cada operação e
+              historicamente a taxa de inadimplência é inferior a 2%.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-lg p-6 shadow-md">
+            <h3 class="text-lg font-semibold text-gray-900 mb-3">
+              Como é a tributação dos ganhos?
+            </h3>
+            <p class="text-gray-600">
+              Os rendimentos seguem a tabela regressiva do IR: 22,5% até 180
+              dias, 20% até 360 dias, 17,5% até 720 dias e 15% acima de 720
+              dias. Não há IOF para aplicações superiores a 30 dias.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-lg p-6 shadow-md">
+            <h3 class="text-lg font-semibold text-gray-900 mb-3">
+              Posso resgatar meu investimento antes do vencimento?
+            </h3>
+            <p class="text-gray-600">
+              Sim! O mercado secundário permite vender seus tokens para outros
+              investidores antes do vencimento, oferecendo liquidez quando
+              necessário.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-lg p-6 shadow-md">
+            <h3 class="text-lg font-semibold text-gray-900 mb-3">
+              Como a RecToken seleciona as PMEs?
+            </h3>
+            <p class="text-gray-600">
+              Nossa IA analisa histórico de pagamentos, setor econômico, fluxo
+              de caixa e perfil do devedor. Apenas empresas com score alto são
+              aprovadas para tokenização.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-lg p-6 shadow-md">
+            <h3 class="text-lg font-semibold text-gray-900 mb-3">
+              Existe garantia do FGC?
+            </h3>
+            <p class="text-gray-600">
+              Não. Investimentos em recebíveis não são cobertos pelo FGC. Por
+              isso oferecemos total transparência sobre os riscos e selecionamos
+              criteriosamente cada operação.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 gradient-bg relative overflow-hidden">
+      <div class="tech-pattern absolute inset-0"></div>
+      <div class="absolute inset-0 bg-black/10"></div>
+      <div class="relative max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+        <h2 class="text-4xl font-bold text-white mb-6">
+          Comece a Investir com R$ 100
+        </h2>
+        <p class="text-xl text-blue-100 mb-8">
+          Junte-se a milhares de investidores que já descobriram uma nova forma
+          de fazer seu dinheiro render mais. Cadastro gratuito e investimento em
+          3 cliques.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+          <button
+            class="bg-white text-primary px-8 py-4 rounded-lg text-lg font-bold hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg"
+          >
+            🚀 Criar Conta Grátis
+          </button>
+          <button
+            class="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-primary transition-all"
+          >
+            📞 Falar com Especialista
+          </button>
+        </div>
+
+        <div
+          class="flex justify-center items-center space-x-8 text-blue-100 text-sm"
+        >
+          <div class="flex items-center">
+            <svg
+              class="w-5 h-5 text-green-400 mr-2"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+            Sem taxa de cadastro
+          </div>
+          <div class="flex items-center">
+            <svg
+              class="w-5 h-5 text-green-400 mr-2"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+            Regulamentado CVM
+          </div>
+          <div class="flex items-center">
+            <svg
+              class="w-5 h-5 text-green-400 mr-2"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+            Suporte especializado
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-4 gap-8">
+          <div>
+            <div class="flex items-center space-x-3 mb-6">
+              <div
+                class="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center"
+              >
+                <svg
+                  class="w-6 h-6 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13 10V3L4 14h7v7l9-11h-7z"
+                  ></path>
+                </svg>
+              </div>
+              <span class="text-2xl font-bold">RecToken</span>
+            </div>
+            <p class="text-gray-400 mb-6">
+              Investimentos inteligentes em recebíveis de PMEs. Retornos
+              superiores com tecnologia blockchain.
+            </p>
+            <div class="text-gray-400 text-sm">
+              📍 São Paulo, SP<br />
+              📞 (11) 99999-9999<br />
+              ✉️ investidores@rectoken.com.br
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold mb-6">Para Investidores</h3>
+            <ul class="space-y-3 text-gray-400">
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Como Investir</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Calculadora</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Rentabilidade</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Meu Portfólio</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold mb-6">Suporte</h3>
+            <ul class="space-y-3 text-gray-400">
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Central de Ajuda</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >FAQ Investidores</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >WhatsApp</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Chat Online</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold mb-6">Empresa</h3>
+            <ul class="space-y-3 text-gray-400">
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Sobre Nós</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Segurança</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Compliance</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Regulamentação</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div
+          class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center"
+        >
+          <p class="text-gray-400 text-sm">
+            © 2025 RecToken. Todos os direitos reservados. Regulamentado pela
+            CVM.
+          </p>
+          <div class="flex space-x-6 mt-4 md:mt-0">
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white text-sm transition-colors"
+              >Privacidade</a
+            >
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white text-sm transition-colors"
+              >Termos</a
+            >
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white text-sm transition-colors"
+              >Riscos</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+      // Smooth scrolling para navegação
+      function scrollToSection(sectionId) {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        } else {
+          console.warn(`Seção ${sectionId} não encontrada`);
+        }
+      }
+
+      // Navegação suave para links com âncora
+      document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute("href"));
+            if (target) {
+              target.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            }
+          });
+        });
+      });
+
+      // Calculadora de rendimento (hero)
+      function calcularRendimentoHero() {
+        try {
+          const valorInput = document.getElementById("valorInvestimentoHero");
+          const prazoInput = document.getElementById("prazoInvestimentoHero");
+
+          if (!valorInput || !prazoInput) {
+            console.error("Elementos da calculadora hero não encontrados");
+            return;
+          }
+
+          const valor = parseFloat(valorInput.value) || 5000;
+          const prazo = parseInt(prazoInput.value) || 60;
+
+          // Taxa RecToken: 21% ao ano
+          const taxaRecToken = 0.21;
+          const rendimentoRecToken = valor * (taxaRecToken * (prazo / 365));
+          const totalRecToken = valor + rendimentoRecToken;
+
+          // Poupança: 6.17% ao ano
+          const taxaPoupanca = 0.0617;
+          const rendimentoPoupanca = valor * (taxaPoupanca * (prazo / 365));
+          const totalPoupanca = valor + rendimentoPoupanca;
+
+          // CDB: 14.75% ao ano
+          const taxaCDB = 0.1475;
+          const rendimentoCDB = valor * (taxaCDB * (prazo / 365));
+          const totalCDB = valor + rendimentoCDB;
+
+          // Atualizar display
+          const rendimentoEl = document.getElementById(
+            "rendimentoProjetadoHero"
+          );
+          const percentualEl = document.getElementById("percentualRetornoHero");
+          const poupancaEl = document.getElementById("poupancaComparacaoHero");
+          const cdbEl = document.getElementById("cdbComparacaoHero");
+
+          if (rendimentoEl) {
+            rendimentoEl.textContent = `R$ ${totalRecToken.toLocaleString(
+              "pt-BR",
+              {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0,
+              }
+            )}`;
+          }
+
+          if (percentualEl) {
+            percentualEl.textContent = `${(
+              (rendimentoRecToken / valor) *
+              100
+            ).toFixed(1)}%`;
+          }
+
+          if (poupancaEl) {
+            poupancaEl.textContent = `R$ ${totalPoupanca.toLocaleString(
+              "pt-BR",
+              {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0,
+              }
+            )}`;
+          }
+
+          if (cdbEl) {
+            cdbEl.textContent = `R$ ${totalCDB.toLocaleString("pt-BR", {
+              minimumFractionDigits: 0,
+              maximumFractionDigits: 0,
+            })}`;
+          }
+        } catch (error) {
+          console.error("Erro na calculadora de rendimento hero:", error);
+        }
+      }
+
+      // Calculadora principal de investimento
+      function calcularInvestimento() {
+        try {
+          const valorInput = document.getElementById("valorInvestir");
+          const prazoInput = document.getElementById("prazoInvestir");
+          const perfilInput = document.getElementById("perfilRisco");
+
+          if (!valorInput || !prazoInput || !perfilInput) {
+            console.warn("Elementos da calculadora principal não encontrados");
+            return;
+          }
+
+          const valor = parseFloat(valorInput.value) || 5000;
+          const prazo = parseInt(prazoInput.value) || 60;
+          const perfil = perfilInput.value || "moderado";
+
+          // Definir taxa baseada no perfil
+          let taxaAnual;
+          switch (perfil) {
+            case "conservador":
+              taxaAnual = 0.19; // 19% a.a.
+              break;
+            case "moderado":
+              taxaAnual = 0.21; // 21% a.a.
+              break;
+            case "agressivo":
+              taxaAnual = 0.23; // 23% a.a.
+              break;
+            default:
+              taxaAnual = 0.21;
+          }
+
+          // Cálculos RecToken
+          const rendimentoBruto = valor * (taxaAnual * (prazo / 365));
+          const ir = rendimentoBruto * 0.15; // 15% IR
+          const rendimentoLiquido = rendimentoBruto - ir;
+          const totalLiquido = valor + rendimentoLiquido;
+
+          // Comparações
+          const rendimentoCDB = valor * (0.1475 * (prazo / 365));
+          const irCDB = rendimentoCDB * 0.175; // 17.5% IR (até 360 dias)
+          const totalCDB = valor + rendimentoCDB - irCDB;
+
+          const rendimentoPoupanca = valor * (0.0617 * (prazo / 365));
+          const totalPoupanca = valor + rendimentoPoupanca; // Poupança isenta IR
+
+          // Atualizar displays com verificação de elementos
+          const elements = {
+            "rec-investido": `R$ ${valor.toLocaleString("pt-BR")}`,
+            "rec-rendimento": `+ R$ ${rendimentoBruto.toLocaleString("pt-BR")}`,
+            "rec-ir": `- R$ ${ir.toLocaleString("pt-BR")}`,
+            "rec-liquido": `R$ ${totalLiquido.toLocaleString("pt-BR")}`,
+            "cdb-resultado": `R$ ${totalCDB.toLocaleString("pt-BR")}`,
+            "poupanca-resultado": `R$ ${totalPoupanca.toLocaleString("pt-BR")}`,
+            "vantagem-total": `+R$ ${(totalLiquido - totalCDB).toLocaleString(
+              "pt-BR"
+            )}`,
+            "periodo-vantagem": `${prazo} dias`,
+            "rentabilidade-anual": `${(taxaAnual * 100).toFixed(0)}% a.a.`,
+          };
+
+          Object.keys(elements).forEach((id) => {
+            const element = document.getElementById(id);
+            if (element) {
+              element.textContent = elements[id];
+            }
+          });
+        } catch (error) {
+          console.error("Erro na calculadora principal:", error);
+        }
+      }
+
+      // Animação do header no scroll
+      window.addEventListener("scroll", function () {
+        const header = document.querySelector("nav");
+        if (window.scrollY > 100) {
+          header.classList.add("bg-white/98");
+          header.classList.remove("bg-white/95");
+        } else {
+          header.classList.add("bg-white/95");
+          header.classList.remove("bg-white/98");
+        }
+      });
+
+      // Event listeners
+      document.addEventListener("DOMContentLoaded", function () {
+        // Inicializar cálculos
+        calcularRendimentoHero();
+        calcularInvestimento();
+
+        // Event listeners para calculadora hero
+        const valorInvestimentoHeroEl = document.getElementById(
+          "valorInvestimentoHero"
+        );
+        const prazoInvestimentoHeroEl = document.getElementById(
+          "prazoInvestimentoHero"
+        );
+
+        if (valorInvestimentoHeroEl) {
+          valorInvestimentoHeroEl.addEventListener(
+            "input",
+            calcularRendimentoHero
+          );
+        }
+
+        if (prazoInvestimentoHeroEl) {
+          prazoInvestimentoHeroEl.addEventListener(
+            "change",
+            calcularRendimentoHero
+          );
+        }
+
+        // Event listeners para calculadora principal
+        const valorInvestirEl = document.getElementById("valorInvestir");
+        const prazoInvestirEl = document.getElementById("prazoInvestir");
+        const perfilRiscoEl = document.getElementById("perfilRisco");
+
+        if (valorInvestirEl) {
+          valorInvestirEl.addEventListener("input", calcularInvestimento);
+        }
+
+        if (prazoInvestirEl) {
+          prazoInvestirEl.addEventListener("change", calcularInvestimento);
+        }
+
+        if (perfilRiscoEl) {
+          perfilRiscoEl.addEventListener("change", calcularInvestimento);
+        }
+      });
+
+      // Intersection Observer para animações
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("fade-in");
+          }
+        });
+      }, observerOptions);
+
+      // Observar seções para animação
+      document.querySelectorAll("section").forEach((section) => {
+        observer.observe(section);
+      });
+    </script>
+  </body>
+</html>

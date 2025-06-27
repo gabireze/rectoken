@@ -1,0 +1,1646 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RecToken - Tokenização de Recebíveis para o Futuro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1e3a8a",
+              secondary: "#1e40af",
+              accent: "#3b82f6",
+              dark: "#0f172a",
+              "blue-950": "#172554",
+            },
+            fontFamily: {
+              sans: ["Inter", "system-ui", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .gradient-bg {
+        background: linear-gradient(
+          135deg,
+          #0f172a 0%,
+          #1e3a8a 50%,
+          #1e40af 100%
+        );
+      }
+      .glassmorphism {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      .tech-pattern {
+        background-image: radial-gradient(
+            circle at 25% 25%,
+            rgba(59, 130, 246, 0.1) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 75% 75%,
+            rgba(30, 64, 175, 0.1) 0%,
+            transparent 50%
+          );
+      }
+      .floating {
+        animation: float 6s ease-in-out infinite;
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+      .fade-in {
+        animation: fadeIn 0.8s ease-out;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body class="font-sans antialiased bg-white">
+    <!-- Navigation -->
+    <nav
+      class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-200"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center space-x-3">
+            <a
+              href="index.html"
+              class="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-primary"
+            >
+              <svg
+                class="w-6 h-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 10V3L4 14h7v7l9-11h-7z"
+                ></path>
+              </svg>
+            </a>
+            <a href="index.html" class="text-2xl font-bold text-primary"
+              >RecToken</a
+            >
+          </div>
+
+          <div class="hidden md:flex items-center space-x-8">
+            <a
+              href="#solucao"
+              class="text-gray-700 hover:text-primary transition-colors"
+              >Solução</a
+            >
+            <a
+              href="#mercado"
+              class="text-gray-700 hover:text-primary transition-colors"
+              >Mercado</a
+            >
+            <a
+              href="#tecnologia"
+              class="text-gray-700 hover:text-primary transition-colors"
+              >Tecnologia</a
+            >
+            <a
+              href="#roadmap"
+              class="text-gray-700 hover:text-primary transition-colors"
+              >Roadmap</a
+            >
+            <a
+              href="pme.html"
+              class="text-gray-700 hover:text-primary transition-colors"
+              >Para PMEs</a
+            >
+            <a
+              href="investidores.html"
+              class="text-gray-700 hover:text-primary transition-colors"
+              >Para Investidores</a
+            >
+          </div>
+
+          <div class="flex items-center space-x-4">
+            <button
+              class="hidden md:block text-primary hover:text-secondary font-medium"
+            >
+              Contato
+            </button>
+            <button
+              class="bg-primary text-white px-6 py-2 rounded-lg hover:bg-secondary transition-colors font-medium"
+            >
+              Conhecer Solução
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-16 min-h-screen gradient-bg relative overflow-hidden">
+      <div class="tech-pattern absolute inset-0"></div>
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
+        <div class="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
+          <div class="text-white fade-in">
+            <div
+              class="inline-flex items-center px-4 py-2 rounded-full bg-white/10 border border-white/20 mb-6"
+            >
+              <span class="text-sm font-medium"
+                >🚀 Inovação regulamentada pela CVM</span
+              >
+            </div>
+
+            <h1 class="text-5xl lg:text-7xl font-bold leading-tight mb-6">
+              O Futuro da
+              <span
+                class="bg-gradient-to-r from-blue-300 to-white bg-clip-text text-transparent"
+              >
+                Tokenização
+              </span>
+              de Recebíveis
+            </h1>
+
+            <p class="text-xl text-blue-100 mb-8 leading-relaxed">
+              Transformamos recebíveis de PMEs em tokens digitais,
+              democratizando o acesso ao capital e criando uma nova classe de
+              investimentos com blockchain.
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+              <div class="glassmorphism rounded-lg p-4 text-center">
+                <div class="text-2xl font-bold text-white">R$ 600B</div>
+                <div class="text-sm text-blue-200">Demanda não atendida</div>
+              </div>
+              <div class="glassmorphism rounded-lg p-4 text-center">
+                <div class="text-2xl font-bold text-white">20.3M</div>
+                <div class="text-sm text-blue-200">PMEs no Brasil</div>
+              </div>
+              <div class="glassmorphism rounded-lg p-4 text-center">
+                <div class="text-2xl font-bold text-white">24h</div>
+                <div class="text-sm text-blue-200">Capital liberado</div>
+              </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4">
+              <button
+                class="bg-white text-primary px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg"
+              >
+                Acessar Plataforma
+              </button>
+              <button
+                class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-primary transition-all"
+              >
+                Ver Demo Técnica
+              </button>
+            </div>
+          </div>
+
+          <div class="relative">
+            <div
+              class="floating glassmorphism rounded-2xl p-8 backdrop-blur-lg"
+            >
+              <div class="text-center text-white">
+                <div
+                  class="w-16 h-16 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full mx-auto mb-6 flex items-center justify-center"
+                >
+                  <svg
+                    class="w-8 h-8"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                    ></path>
+                  </svg>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">
+                  Demonstração em Tempo Real
+                </h3>
+                <div class="space-y-4 text-left">
+                  <div class="flex justify-between items-center">
+                    <span class="text-blue-200">Recebível Tokenizado:</span>
+                    <span class="font-semibold">R$ 50.000</span>
+                  </div>
+                  <div class="flex justify-between items-center">
+                    <span class="text-blue-200">Taxa RecToken:</span>
+                    <span class="font-semibold text-green-400"
+                      >2% (vs 5% factoring)</span
+                    >
+                  </div>
+                  <div class="flex justify-between items-center">
+                    <span class="text-blue-200">Tempo de Liberação:</span>
+                    <span class="font-semibold text-green-400"
+                      >24h (vs 15 dias)</span
+                    >
+                  </div>
+                  <div
+                    class="flex justify-between items-center pt-2 border-t border-white/20"
+                  >
+                    <span class="text-blue-200">Economia Total:</span>
+                    <span class="font-bold text-xl text-green-400"
+                      >R$ 1.500</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Solução Section -->
+    <section id="solucao" class="py-20 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">
+            Resolvendo o Gap de R$ 600 Bilhões
+          </h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Conectamos PMEs que precisam de capital com investidores que buscam
+            retornos atrativos, usando blockchain para criar transparência e
+            eficiência.
+          </p>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <div class="space-y-8">
+              <div class="flex items-start space-x-4">
+                <div
+                  class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center flex-shrink-0"
+                >
+                  <span class="text-white font-bold text-lg">1</span>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-gray-900 mb-2">
+                    PME Tokeniza Recebíveis
+                  </h3>
+                  <p class="text-gray-600">
+                    Empresa cadastra recebíveis futuros na plataforma. IA avalia
+                    risco em tempo real baseada em histórico de pagamentos,
+                    setor e fluxo de caixa.
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-start space-x-4">
+                <div
+                  class="w-12 h-12 bg-accent rounded-lg flex items-center justify-center flex-shrink-0"
+                >
+                  <span class="text-white font-bold text-lg">2</span>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-gray-900 mb-2">
+                    Emissão de Tokens
+                  </h3>
+                  <p class="text-gray-600">
+                    Smart contracts criam tokens representando frações dos
+                    recebíveis, permitindo investimento fracionado a partir de
+                    R$ 100.
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-start space-x-4">
+                <div
+                  class="w-12 h-12 bg-secondary rounded-lg flex items-center justify-center flex-shrink-0"
+                >
+                  <span class="text-white font-bold text-lg">3</span>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-gray-900 mb-2">
+                    Liquidação Automática
+                  </h3>
+                  <p class="text-gray-600">
+                    Integração com PIX e DREX permite liquidação instantânea.
+                    PME recebe capital em 24h, investidor recebe retorno
+                    automaticamente.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="relative">
+            <div
+              class="bg-white rounded-2xl shadow-2xl p-8 border border-gray-200"
+            >
+              <h3 class="text-2xl font-bold text-primary mb-6 text-center">
+                Comparativo de Performance
+              </h3>
+
+              <div class="space-y-4">
+                <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-400">
+                  <div class="flex justify-between items-center mb-2">
+                    <span class="font-semibold text-gray-900"
+                      >Factoring Tradicional</span
+                    >
+                    <span class="text-red-600 font-bold text-2xl">😰</span>
+                  </div>
+                  <div class="grid grid-cols-2 gap-4 text-sm">
+                    <div>
+                      <span class="text-gray-600">Taxa:</span>
+                      <span class="ml-2 font-semibold text-red-600"
+                        >36-60% a.a.</span
+                      >
+                    </div>
+                    <div>
+                      <span class="text-gray-600">Prazo:</span>
+                      <span class="ml-2 font-semibold">7-15 dias</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="bg-green-50 p-4 rounded-lg border-l-4 border-green-400"
+                >
+                  <div class="flex justify-between items-center mb-2">
+                    <span class="font-semibold text-gray-900">RecToken</span>
+                    <span class="text-green-600 font-bold text-2xl">🚀</span>
+                  </div>
+                  <div class="grid grid-cols-2 gap-4 text-sm">
+                    <div>
+                      <span class="text-gray-600">Taxa:</span>
+                      <span class="ml-2 font-semibold text-green-600"
+                        >18-24% a.a.</span
+                      >
+                    </div>
+                    <div>
+                      <span class="text-gray-600">Prazo:</span>
+                      <span class="ml-2 font-semibold text-green-600"
+                        >24 horas</span
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="bg-blue-50 p-4 rounded-lg text-center">
+                  <div class="text-blue-800 font-bold text-lg">
+                    💰 Economia Média
+                  </div>
+                  <div class="text-3xl font-bold text-blue-600">50-70%</div>
+                  <div class="text-sm text-blue-700">
+                    em custos de financiamento
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mercado Section -->
+    <section id="mercado" class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">
+            Mercado Pronto para Disrupção
+          </h2>
+          <p class="text-xl text-gray-600">
+            Combinação única de demanda reprimida, regulamentação avançada e
+            infraestrutura tecnológica
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 mb-16">
+          <div
+            class="text-center p-8 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl"
+          >
+            <div
+              class="w-16 h-16 bg-primary rounded-full mx-auto mb-6 flex items-center justify-center"
+            >
+              <svg
+                class="w-8 h-8 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-primary mb-4">20.3M PMEs</h3>
+            <p class="text-gray-700">
+              99% das empresas brasileiras são PMEs, gerando 52% dos empregos
+              formais mas com acesso limitado ao crédito tradicional.
+            </p>
+          </div>
+
+          <div
+            class="text-center p-8 bg-gradient-to-br from-green-50 to-green-100 rounded-2xl"
+          >
+            <div
+              class="w-16 h-16 bg-green-600 rounded-full mx-auto mb-6 flex items-center justify-center"
+            >
+              <svg
+                class="w-8 h-8 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-green-600 mb-4">R$ 93B</h3>
+            <p class="text-gray-700">
+              Mercado de factoring com crescimento de 11.5% ao ano,
+              representando 31.8% do volume da América Latina.
+            </p>
+          </div>
+
+          <div
+            class="text-center p-8 bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl"
+          >
+            <div
+              class="w-16 h-16 bg-purple-600 rounded-full mx-auto mb-6 flex items-center justify-center"
+            >
+              <svg
+                class="w-8 h-8 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-purple-600 mb-4">CVM 88/22</h3>
+            <p class="text-gray-700">
+              Regulamentação que permite tokenização até R$ 15M anuais via
+              crowdfunding, criando ambiente legal seguro.
+            </p>
+          </div>
+        </div>
+
+        <!-- Regulatory Timeline -->
+        <div class="bg-gray-50 rounded-2xl p-8">
+          <h3 class="text-2xl font-bold text-center text-gray-900 mb-8">
+            Cronograma Regulatório Favorável
+          </h3>
+          <div class="relative">
+            <div
+              class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-primary"
+            ></div>
+            <div class="space-y-8">
+              <div class="flex items-center">
+                <div class="w-1/2 pr-8 text-right">
+                  <h4 class="font-bold text-primary">2021</h4>
+                  <p class="text-gray-600">
+                    Resolução BCB 4734 - Registro obrigatório de recebíveis
+                  </p>
+                </div>
+                <div
+                  class="w-4 h-4 bg-primary rounded-full relative z-10"
+                ></div>
+                <div class="w-1/2 pl-8"></div>
+              </div>
+
+              <div class="flex items-center">
+                <div class="w-1/2 pr-8"></div>
+                <div class="w-4 h-4 bg-accent rounded-full relative z-10"></div>
+                <div class="w-1/2 pl-8">
+                  <h4 class="font-bold text-accent">2022</h4>
+                  <p class="text-gray-600">
+                    CVM 88/22 - Framework para tokenização via crowdfunding
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-center">
+                <div class="w-1/2 pr-8 text-right">
+                  <h4 class="font-bold text-green-600">2024</h4>
+                  <p class="text-gray-600">
+                    DREX - Implementação da moeda digital brasileira
+                  </p>
+                </div>
+                <div
+                  class="w-4 h-4 bg-green-600 rounded-full relative z-10"
+                ></div>
+                <div class="w-1/2 pl-8"></div>
+              </div>
+
+              <div class="flex items-center">
+                <div class="w-1/2 pr-8"></div>
+                <div
+                  class="w-4 h-4 bg-purple-600 rounded-full relative z-10"
+                ></div>
+                <div class="w-1/2 pl-8">
+                  <h4 class="font-bold text-purple-600">2025</h4>
+                  <p class="text-gray-600">
+                    VASP - Licenciamento de prestadores de serviços de ativos
+                    virtuais
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tecnologia Section -->
+    <section id="tecnologia" class="py-20 bg-gray-900">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold text-white mb-4">
+            Stack Tecnológico de Ponta
+          </h2>
+          <p class="text-xl text-gray-300">
+            Blockchain, IA e integrações nativas para máxima eficiência e
+            segurança
+          </p>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <div class="space-y-6">
+              <div class="glassmorphism rounded-lg p-6">
+                <h3 class="text-xl font-bold text-white mb-3 flex items-center">
+                  <svg
+                    class="w-6 h-6 mr-3 text-blue-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+                    ></path>
+                  </svg>
+                  Blockchain Polygon
+                </h3>
+                <p class="text-gray-300">
+                  Custos 1000x menores que Ethereum ($0.001 vs $15), 65.000 TPS
+                  e compatibilidade EVM para desenvolvimento ágil.
+                </p>
+              </div>
+
+              <div class="glassmorphism rounded-lg p-6">
+                <h3 class="text-xl font-bold text-white mb-3 flex items-center">
+                  <svg
+                    class="w-6 h-6 mr-3 text-green-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                    ></path>
+                  </svg>
+                  IA de Credit Scoring
+                </h3>
+                <p class="text-gray-300">
+                  Análise em tempo real de histórico de pagamentos, setor
+                  econômico, fluxo de caixa e perfil do devedor para minimizar
+                  riscos.
+                </p>
+              </div>
+
+              <div class="glassmorphism rounded-lg p-6">
+                <h3 class="text-xl font-bold text-white mb-3 flex items-center">
+                  <svg
+                    class="w-6 h-6 mr-3 text-purple-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                    ></path>
+                  </svg>
+                  Integrações Nativas
+                </h3>
+                <p class="text-gray-300">
+                  PIX para liquidação 24/7, Open Banking para verificação
+                  automática, DREX para contratos inteligentes governamentais.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="relative">
+            <div
+              class="bg-gradient-to-br from-blue-900/50 to-purple-900/50 rounded-2xl p-8 border border-white/10"
+            >
+              <h3 class="text-2xl font-bold text-white mb-6 text-center">
+                Arquitetura do Sistema
+              </h3>
+
+              <div class="space-y-4">
+                <div
+                  class="flex items-center justify-between bg-white/5 rounded-lg p-4"
+                >
+                  <span class="text-white font-medium"
+                    >Frontend (React/Next.js)</span
+                  >
+                  <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                </div>
+
+                <div
+                  class="flex items-center justify-between bg-white/5 rounded-lg p-4"
+                >
+                  <span class="text-white font-medium"
+                    >API Gateway (Node.js)</span
+                  >
+                  <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                </div>
+
+                <div
+                  class="flex items-center justify-between bg-white/5 rounded-lg p-4"
+                >
+                  <span class="text-white font-medium"
+                    >Smart Contracts (Solidity)</span
+                  >
+                  <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                </div>
+
+                <div
+                  class="flex items-center justify-between bg-white/5 rounded-lg p-4"
+                >
+                  <span class="text-white font-medium">Polygon Network</span>
+                  <div class="w-2 h-2 bg-blue-400 rounded-full"></div>
+                </div>
+
+                <div
+                  class="flex items-center justify-between bg-white/5 rounded-lg p-4"
+                >
+                  <span class="text-white font-medium">IPFS Storage</span>
+                  <div class="w-2 h-2 bg-purple-400 rounded-full"></div>
+                </div>
+
+                <div
+                  class="flex items-center justify-between bg-white/5 rounded-lg p-4"
+                >
+                  <span class="text-white font-medium"
+                    >Database (PostgreSQL)</span
+                  >
+                  <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                </div>
+              </div>
+
+              <div class="mt-6 text-center">
+                <div class="text-sm text-gray-400 mb-2">
+                  Tempo de Resposta Médio
+                </div>
+                <div class="text-3xl font-bold text-green-400">< 2s</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Roadmap Section -->
+    <section id="roadmap" class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">
+            Roadmap de Implementação
+          </h2>
+          <p class="text-xl text-gray-600">
+            Estratégia de 3 fases para capturar o mercado de tokenização no
+            Brasil
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- Fase 1 -->
+          <div class="relative">
+            <div
+              class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8 h-full border-2 border-blue-200"
+            >
+              <div class="flex items-center mb-6">
+                <div
+                  class="w-12 h-12 bg-primary rounded-full flex items-center justify-center mr-4"
+                >
+                  <span class="text-white font-bold text-lg">1</span>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-primary">
+                    MVP Development
+                  </h3>
+                  <p class="text-sm text-gray-600">Meses 1-6</p>
+                </div>
+              </div>
+
+              <ul class="space-y-3 mb-6">
+                <li class="flex items-start">
+                  <svg
+                    class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                  <span class="text-gray-700"
+                    >Autorização CVM crowdfunding</span
+                  >
+                </li>
+                <li class="flex items-start">
+                  <svg
+                    class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                  <span class="text-gray-700">Smart contracts básicos</span>
+                </li>
+                <li class="flex items-start">
+                  <svg
+                    class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                  <span class="text-gray-700">Integração PIX/KYC</span>
+                </li>
+                <li class="flex items-start">
+                  <svg
+                    class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                  <span class="text-gray-700">10 PMEs piloto</span>
+                </li>
+              </ul>
+
+              <div class="bg-white rounded-lg p-4">
+                <div class="text-center">
+                  <div class="text-2xl font-bold text-primary">$200K-350K</div>
+                  <div class="text-sm text-gray-600">Investimento</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Fase 2 -->
+          <div class="relative">
+            <div
+              class="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-8 h-full border-2 border-green-200"
+            >
+              <div class="flex items-center mb-6">
+                <div
+                  class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center mr-4"
+                >
+                  <span class="text-white font-bold text-lg">2</span>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-green-700">
+                    Market Expansion
+                  </h3>
+                  <p class="text-sm text-gray-600">Meses 7-12</p>
+                </div>
+              </div>
+
+              <ul class="space-y-3 mb-6">
+                <li class="flex items-start">
+                  <svg
+                    class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                  <span class="text-gray-700">Apps mobile nativas</span>
+                </li>
+                <li class="flex items-start">
+                  <svg
+                    class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                  <span class="text-gray-700">Parceria B3 Digital Assets</span>
+                </li>
+                <li class="flex items-start">
+                  <svg
+                    class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                  <span class="text-gray-700">Mercado secundário</span>
+                </li>
+                <li class="flex items-start">
+                  <svg
+                    class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                  <span class="text-gray-700">100 PMEs ativas</span>
+                </li>
+              </ul>
+
+              <div class="bg-white rounded-lg p-4">
+                <div class="text-center">
+                  <div class="text-2xl font-bold text-green-600">
+                    $300K-600K
+                  </div>
+                  <div class="text-sm text-gray-600">Investimento</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Fase 3 -->
+          <div class="relative">
+            <div
+              class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-8 h-full border-2 border-purple-200"
+            >
+              <div class="flex items-center mb-6">
+                <div
+                  class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center mr-4"
+                >
+                  <span class="text-white font-bold text-lg">3</span>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-purple-700">
+                    Scale Operations
+                  </h3>
+                  <p class="text-sm text-gray-600">Ano 2+</p>
+                </div>
+              </div>
+
+              <ul class="space-y-3 mb-6">
+                <li class="flex items-start">
+                  <svg
+                    class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                  <span class="text-gray-700">Integração DREX completa</span>
+                </li>
+                <li class="flex items-start">
+                  <svg
+                    class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                  <span class="text-gray-700">Investidores institucionais</span>
+                </li>
+                <li class="flex items-start">
+                  <svg
+                    class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                  <span class="text-gray-700">Supply chain finance</span>
+                </li>
+                <li class="flex items-start">
+                  <svg
+                    class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                  <span class="text-gray-700">Expansão internacional</span>
+                </li>
+              </ul>
+
+              <div class="bg-white rounded-lg p-4">
+                <div class="text-center">
+                  <div class="text-2xl font-bold text-purple-600">
+                    $400K-800K
+                  </div>
+                  <div class="text-sm text-gray-600">Investimento</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Projeções Financeiras -->
+        <div class="mt-16 bg-gray-50 rounded-2xl p-8">
+          <h3 class="text-2xl font-bold text-center text-gray-900 mb-8">
+            Projeções Financeiras
+          </h3>
+          <div class="grid md:grid-cols-3 gap-8">
+            <div class="text-center">
+              <div class="text-3xl font-bold text-primary mb-2">Ano 1</div>
+              <div class="text-lg text-gray-600 mb-4">R$ 50M tokenizados</div>
+              <div class="bg-white rounded-lg p-4">
+                <div class="text-2xl font-bold text-green-600">R$ 1.25M</div>
+                <div class="text-sm text-gray-500">Receita</div>
+              </div>
+            </div>
+
+            <div class="text-center">
+              <div class="text-3xl font-bold text-green-600 mb-2">Ano 2</div>
+              <div class="text-lg text-gray-600 mb-4">R$ 300M tokenizados</div>
+              <div class="bg-white rounded-lg p-4">
+                <div class="text-2xl font-bold text-green-600">R$ 7.5M</div>
+                <div class="text-sm text-gray-500">Receita (Break-even)</div>
+              </div>
+            </div>
+
+            <div class="text-center">
+              <div class="text-3xl font-bold text-purple-600 mb-2">Ano 3</div>
+              <div class="text-lg text-gray-600 mb-4">R$ 1B tokenizados</div>
+              <div class="bg-white rounded-lg p-4">
+                <div class="text-2xl font-bold text-green-600">R$ 25M</div>
+                <div class="text-sm text-gray-500">Receita (68% margem)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 gradient-bg relative overflow-hidden">
+      <div class="tech-pattern absolute inset-0"></div>
+      <div class="relative max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+        <h2 class="text-4xl font-bold text-white mb-6">
+          Pronto para Revolucionar o Mercado de Recebíveis?
+        </h2>
+        <p class="text-xl text-blue-100 mb-8">
+          Junte-se à transformação digital do maior mercado de factoring da
+          América Latina. A oportunidade é agora, a tecnologia está pronta, a
+          regulamentação favorece.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+          <button
+            class="bg-white text-primary px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg"
+          >
+            🚀 Acessar Whitepaper Técnico
+          </button>
+          <button
+            class="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-primary transition-all"
+          >
+            📅 Agendar Apresentação
+          </button>
+        </div>
+
+        <div
+          class="flex justify-center items-center space-x-8 text-blue-100 text-sm"
+        >
+          <div class="flex items-center">
+            <svg
+              class="w-5 h-5 text-green-400 mr-2"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+            Regulamentação CVM
+          </div>
+          <div class="flex items-center">
+            <svg
+              class="w-5 h-5 text-green-400 mr-2"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+            Tecnologia Auditada
+          </div>
+          <div class="flex items-center">
+            <svg
+              class="w-5 h-5 text-green-400 mr-2"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+            Parceria B3
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-4 gap-8">
+          <div>
+            <div class="flex items-center space-x-3 mb-6">
+              <div
+                class="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center"
+              >
+                <svg
+                  class="w-6 h-6 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13 10V3L4 14h7v7l9-11h-7z"
+                  ></path>
+                </svg>
+              </div>
+              <span class="text-2xl font-bold">RecToken</span>
+            </div>
+            <p class="text-gray-400 mb-6">
+              Revolucionando o acesso ao capital para PMEs através da
+              tokenização de recebíveis.
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="#"
+                class="text-gray-400 hover:text-white transition-colors"
+              >
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="#"
+                class="text-gray-400 hover:text-white transition-colors"
+              >
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="#"
+                class="text-gray-400 hover:text-white transition-colors"
+              >
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.887 2.748.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.746-1.378l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.624 0 11.99-5.367 11.99-11.989C24.007 5.367 18.641.001 12.017.001z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold mb-6">Produto</h3>
+            <ul class="space-y-3 text-gray-400">
+              <li>
+                <a href="pme.html" class="hover:text-white transition-colors"
+                  >Para PMEs</a
+                >
+              </li>
+              <li>
+                <a
+                  href="investidores.html"
+                  class="hover:text-white transition-colors"
+                  >Para Investidores</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >API Desenvolvedores</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Documentação Técnica</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Status Sistema</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold mb-6">Recursos</h3>
+            <ul class="space-y-3 text-gray-400">
+              <li>
+                <a href="#" class="hover:text-white transition-colors">Blog</a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Whitepaper</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Central de Ajuda</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Compliance</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Segurança</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold mb-6">Empresa</h3>
+            <ul class="space-y-3 text-gray-400">
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Sobre Nós</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Investidores</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Carreiras</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Imprensa</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Contato</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div
+          class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center"
+        >
+          <p class="text-gray-400 text-sm">
+            © 2025 RecToken. Todos os direitos reservados. Regulamentado pela
+            CVM.
+          </p>
+          <div class="flex space-x-6 mt-4 md:mt-0">
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white text-sm transition-colors"
+              >Privacidade</a
+            >
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white text-sm transition-colors"
+              >Termos</a
+            >
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white text-sm transition-colors"
+              >Cookies</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+      // Smooth scrolling para navegação
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Animação do header no scroll
+      window.addEventListener("scroll", function () {
+        const header = document.querySelector("nav");
+        if (window.scrollY > 100) {
+          header.classList.add("bg-white/95");
+          header.classList.remove("bg-white/90");
+        } else {
+          header.classList.add("bg-white/90");
+          header.classList.remove("bg-white/95");
+        }
+      });
+
+      // Intersection Observer para animações
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("fade-in");
+          }
+        });
+      }, observerOptions);
+
+      // Observar elementos para animação
+      document.querySelectorAll("section").forEach((section) => {
+        observer.observe(section);
+      });
+
+      // Animação de counter para números
+      function animateCounter(element, target, duration = 2000) {
+        let start = 0;
+        const increment = target / (duration / 16);
+
+        function updateCounter() {
+          start += increment;
+          if (start < target) {
+            element.textContent = Math.floor(start).toLocaleString("pt-BR");
+            requestAnimationFrame(updateCounter);
+          } else {
+            element.textContent = target.toLocaleString("pt-BR");
+          }
+        }
+        updateCounter();
+      }
+
+      // Trigger animações quando elementos ficam visíveis
+      const statsObserver = new IntersectionObserver(function (entries) {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const counters = entry.target.querySelectorAll("[data-counter]");
+            counters.forEach((counter) => {
+              const target = parseInt(counter.dataset.counter);
+              animateCounter(counter, target);
+            });
+            statsObserver.unobserve(entry.target);
+          }
+        });
+      });
+
+      // Mobile menu toggle (se necessário)
+      const mobileMenuButton = document.querySelector("[data-mobile-menu]");
+      const mobileMenu = document.querySelector("[data-mobile-menu-content]");
+
+      if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener("click", () => {
+          mobileMenu.classList.toggle("hidden");
+        });
+      }
+
+      // Adicionar efeito parallax sutil no hero
+      window.addEventListener("scroll", () => {
+        const scrolled = window.pageYOffset;
+        const parallaxElements = document.querySelectorAll(".tech-pattern");
+
+        parallaxElements.forEach((element) => {
+          const speed = 0.5;
+          element.style.transform = `translateY(${scrolled * speed}px)`;
+        });
+      });
+
+      // Efeito de typing para o título (opcional)
+      function typeWriter(element, text, speed = 100) {
+        let i = 0;
+        element.innerHTML = "";
+
+        function type() {
+          if (i < text.length) {
+            element.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
+          }
+        }
+        type();
+      }
+
+      // Ativar efeitos quando a página carregar
+      document.addEventListener("DOMContentLoaded", function () {
+        // Adicionar classe para transições suaves
+        document.body.classList.add("loaded");
+
+        // Observar seções para stats
+        const statsSection = document.querySelector("#mercado");
+        if (statsSection) {
+          statsObserver.observe(statsSection);
+        }
+      });
+
+      // Preloader simples (opcional)
+      window.addEventListener("load", function () {
+        const preloader = document.querySelector(".preloader");
+        if (preloader) {
+          preloader.style.opacity = "0";
+          setTimeout(() => {
+            preloader.style.display = "none";
+          }, 300);
+        }
+      });
+
+      // Função para copiar texto (útil para códigos/endereços)
+      function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(function () {
+          // Mostrar feedback visual
+          const toast = document.createElement("div");
+          toast.className =
+            "fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg z-50";
+          toast.textContent = "Copiado!";
+          document.body.appendChild(toast);
+
+          setTimeout(() => {
+            toast.remove();
+          }, 2000);
+        });
+      }
+
+      // Easter egg - Konami code para desenvolvedores
+      let konamiCode = [];
+      const konami = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65]; // ↑↑↓↓←→←→BA
+
+      document.addEventListener("keydown", function (e) {
+        konamiCode.push(e.keyCode);
+        if (konamiCode.length > konami.length) {
+          konamiCode.shift();
+        }
+
+        if (konamiCode.join(",") === konami.join(",")) {
+          console.log("🚀 RecToken Developer Mode Activated!");
+          console.log("📊 Market Size: $600B unmet demand");
+          console.log("🏗️ Tech Stack: Polygon + DREX + PIX");
+          console.log("⚖️ Regulatory: CVM 88/22 compliant");
+          console.log("🎯 Target: 1% market share = $6B");
+
+          // Adicionar efeito visual sutil
+          document.body.style.animation = "pulse 0.5s ease-in-out";
+          setTimeout(() => {
+            document.body.style.animation = "";
+          }, 500);
+
+          konamiCode = [];
+        }
+      });
+    </script>
+
+    <style>
+      /* Animações CSS adicionais */
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.8;
+        }
+      }
+
+      .loaded {
+        transition: all 0.3s ease;
+      }
+
+      /* Scrollbar customizada */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #f1f5f9;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #1e3a8a;
+        border-radius: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #1e40af;
+      }
+
+      /* Preloader (se necessário) */
+      .preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #0f172a;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        transition: opacity 0.3s ease;
+      }
+
+      /* Animação de entrada melhorada */
+      .fade-in {
+        animation: fadeInUp 0.8s ease-out;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Efeito hover nos cards */
+      .hover-lift {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .hover-lift:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Gradiente animado para botões */
+      .btn-gradient {
+        background: linear-gradient(45deg, #1e3a8a, #3b82f6, #1e40af);
+        background-size: 200% 200%;
+        animation: gradientShift 3s ease infinite;
+      }
+
+      @keyframes gradientShift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      /* Estilo para texto selecionado */
+      ::selection {
+        background: #3b82f6;
+        color: white;
+      }
+
+      ::-moz-selection {
+        background: #3b82f6;
+        color: white;
+      }
+
+      /* Focus states melhorados para acessibilidade */
+      button:focus,
+      a:focus {
+        outline: 2px solid #3b82f6;
+        outline-offset: 2px;
+      }
+
+      /* Media queries para melhor responsividade */
+      @media (max-width: 768px) {
+        .gradient-bg {
+          background-attachment: scroll;
+        }
+
+        .floating {
+          animation: none;
+        }
+
+        .tech-pattern {
+          opacity: 0.5;
+        }
+      }
+
+      /* Print styles */
+      @media print {
+        .floating,
+        .gradient-bg,
+        .glassmorphism {
+          background: white !important;
+          color: black !important;
+        }
+
+        .tech-pattern {
+          display: none;
+        }
+      }
+    </style>
+  </body>
+</html>

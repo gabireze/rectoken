@@ -1,0 +1,1505 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RecToken PME - Capital de Giro em 24 Horas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1e3a8a",
+              secondary: "#1e40af",
+              accent: "#3b82f6",
+              dark: "#0f172a",
+              "blue-950": "#172554",
+            },
+            fontFamily: {
+              sans: ["Inter", "system-ui", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .gradient-bg {
+        background: linear-gradient(
+          135deg,
+          #0f172a 0%,
+          #1e3a8a 50%,
+          #1e40af 100%
+        );
+      }
+      .problem-bg {
+        background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+      }
+      .solution-bg {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      }
+      .tech-pattern {
+        background-image: radial-gradient(
+            circle at 25% 25%,
+            rgba(59, 130, 246, 0.1) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 75% 75%,
+            rgba(30, 64, 175, 0.1) 0%,
+            transparent 50%
+          );
+      }
+      .glassmorphism {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      .floating {
+        animation: float 6s ease-in-out infinite;
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-15px);
+        }
+      }
+      .pulse-ring {
+        animation: pulse-ring 1.25s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+      }
+      @keyframes pulse-ring {
+        0% {
+          transform: scale(0.33);
+        }
+        80%,
+        100% {
+          opacity: 0;
+        }
+      }
+      .fade-in {
+        animation: fadeIn 0.8s ease-out;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body class="font-sans antialiased bg-white">
+    <!-- Navigation -->
+    <nav
+      class="fixed w-full z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <a
+            href="index.html"
+            class="flex items-center space-x-3 hover:opacity-80 transition-opacity"
+          >
+            <div
+              class="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center"
+            >
+              <svg
+                class="w-6 h-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 10V3L4 14h7v7l9-11h-7z"
+                ></path>
+              </svg>
+            </div>
+            <div>
+              <span class="text-2xl font-bold text-primary">RecToken</span>
+              <span
+                class="ml-2 bg-green-600 text-white px-2 py-1 text-xs rounded-full font-medium"
+                >PME</span
+              >
+            </div>
+          </a>
+
+          <div class="hidden md:flex items-center space-x-6">
+            <a
+              href="#problemas"
+              class="text-gray-700 hover:text-primary transition-colors font-medium"
+              >Problemas</a
+            >
+            <a
+              href="#solucao"
+              class="text-gray-700 hover:text-primary transition-colors font-medium"
+              >Solução</a
+            >
+            <a
+              href="#calculadora"
+              class="text-gray-700 hover:text-primary transition-colors font-medium"
+              >Simular</a
+            >
+            <a
+              href="#casos"
+              class="text-gray-700 hover:text-primary transition-colors font-medium"
+              >Casos</a
+            >
+            <a
+              href="investidores.html"
+              class="text-gray-700 hover:text-primary transition-colors font-medium"
+              >Para Investidores</a
+            >
+          </div>
+
+          <div class="flex items-center space-x-4">
+            <button
+              class="hidden md:block text-primary hover:text-secondary font-medium"
+            >
+              Suporte
+            </button>
+            <button
+              class="bg-primary text-white px-6 py-2 rounded-lg hover:bg-secondary transition-colors font-semibold"
+            >
+              Cadastrar PME
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-16 min-h-screen gradient-bg relative overflow-hidden">
+      <div class="tech-pattern absolute inset-0"></div>
+      <div class="absolute inset-0 bg-black/10"></div>
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
+        <div class="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
+          <div class="text-white fade-in">
+            <div
+              class="inline-flex items-center px-4 py-2 rounded-full bg-white/20 border border-white/30 mb-6"
+            >
+              <span class="text-sm font-medium"
+                >🚀 Regulamentado pela CVM • Seguro • Transparente</span
+              >
+            </div>
+
+            <h1 class="text-5xl lg:text-7xl font-bold leading-tight mb-6">
+              Capital de Giro em
+              <span
+                class="bg-gradient-to-r from-blue-300 to-white bg-clip-text text-transparent"
+                >24 Horas</span
+              >
+            </h1>
+
+            <p class="text-xl text-blue-100 mb-8 leading-relaxed">
+              Transforme seus recebíveis em dinheiro na conta hoje mesmo. Sem
+              burocracia, sem garantias pessoais, com taxa 50% menor que o
+              factoring tradicional.
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+              <div class="glassmorphism rounded-lg p-4 text-center">
+                <div class="text-2xl font-bold text-white">24h</div>
+                <div class="text-sm text-blue-200">vs 15 dias factoring</div>
+              </div>
+              <div class="glassmorphism rounded-lg p-4 text-center">
+                <div class="text-2xl font-bold text-white">50%</div>
+                <div class="text-sm text-blue-200">Economia nas taxas</div>
+              </div>
+              <div class="glassmorphism rounded-lg p-4 text-center">
+                <div class="text-2xl font-bold text-white">0</div>
+                <div class="text-sm text-blue-200">Garantias pessoais</div>
+              </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4">
+              <button
+                onclick="scrollToSection('calculadora')"
+                class="bg-white text-primary px-8 py-4 rounded-lg text-lg font-bold hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg"
+              >
+                🧮 Simular Economia Agora
+              </button>
+              <button
+                onclick="scrollToSection('solucao')"
+                class="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-primary transition-all"
+              >
+                Como Funciona
+              </button>
+            </div>
+
+            <div class="mt-8 flex items-center space-x-6 text-sm text-blue-200">
+              <div class="flex items-center">
+                <svg
+                  class="w-5 h-5 text-green-400 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Processo 100% digital
+              </div>
+              <div class="flex items-center">
+                <svg
+                  class="w-5 h-5 text-green-400 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Sem papelada
+              </div>
+              <div class="flex items-center">
+                <svg
+                  class="w-5 h-5 text-green-400 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Receba via PIX
+              </div>
+            </div>
+          </div>
+
+          <div class="relative">
+            <!-- Comparison Card -->
+            <div
+              class="floating glassmorphism rounded-2xl p-8 backdrop-blur-lg"
+            >
+              <h3 class="text-2xl font-bold text-white mb-6 text-center">
+                Comparação Real de Custos
+              </h3>
+
+              <div class="space-y-4">
+                <!-- Factoring Tradicional -->
+                <div
+                  class="bg-white/10 border border-white/20 rounded-lg p-4"
+                >
+                  <div class="flex justify-between items-center mb-3">
+                    <span class="font-bold text-white"
+                      >Factoring Tradicional</span
+                    >
+                    <span class="text-2xl">😰</span>
+                  </div>
+                  <div class="space-y-2 text-sm">
+                    <div class="flex justify-between">
+                      <span class="text-blue-200">Recebível:</span>
+                      <span class="text-white font-semibold">R$ 50.000</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-blue-200">Taxa (5% mês):</span>
+                      <span class="text-yellow-300 font-semibold">- R$ 2.500</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-blue-200">Prazo:</span>
+                      <span class="text-white">7-15 dias</span>
+                    </div>
+                    <div
+                      class="flex justify-between pt-2 border-t border-white/20"
+                    >
+                      <span class="text-blue-200">Você recebe:</span>
+                      <span class="text-yellow-300 font-bold text-lg"
+                        >R$ 47.500</span
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <!-- RecToken -->
+                <div
+                  class="bg-green-500/20 border border-green-400/30 rounded-lg p-4"
+                >
+                  <div class="flex justify-between items-center mb-3">
+                    <span class="font-bold text-white">RecToken</span>
+                    <span class="text-2xl">🚀</span>
+                  </div>
+                  <div class="space-y-2 text-sm">
+                    <div class="flex justify-between">
+                      <span class="text-green-200">Recebível:</span>
+                      <span class="text-white font-semibold">R$ 50.000</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-green-200">Taxa (2%):</span>
+                      <span class="text-green-300 font-semibold"
+                        >- R$ 1.000</span
+                      >
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-green-200">Prazo:</span>
+                      <span class="text-white">24 horas</span>
+                    </div>
+                    <div
+                      class="flex justify-between pt-2 border-t border-green-400/30"
+                    >
+                      <span class="text-green-200">Você recebe:</span>
+                      <span class="text-green-400 font-bold text-lg"
+                        >R$ 49.000</span
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Economia -->
+                <div
+                  class="bg-blue-400/20 border border-blue-400/30 rounded-lg p-4 text-center"
+                >
+                  <div class="text-blue-300 font-bold text-lg">
+                    💰 Sua Economia
+                  </div>
+                  <div class="text-3xl font-bold text-blue-400 mb-1">
+                    R$ 1.500
+                  </div>
+                  <div class="text-blue-200 text-sm">
+                    Em uma única operação!
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Problems Section -->
+    <section id="problemas" class="py-20 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">
+            Conhecemos os Problemas da sua PME
+          </h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            67% das PMEs enfrentam os mesmos desafios de capital de giro. Você
+            não está sozinho nessa luta.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 mb-16">
+          <!-- Problema 1 -->
+          <div
+            class="bg-white rounded-2xl p-8 shadow-lg border-l-4 border-primary"
+          >
+            <div class="text-5xl mb-4 text-center">⏰</div>
+            <h3 class="text-xl font-bold text-gray-900 mb-4 text-center">
+              Dinheiro Travado
+            </h3>
+            <p class="text-gray-600 text-center mb-4">
+              Vendeu muito mas o pagamento só vem em 30, 60 ou 90 dias. Enquanto
+              isso, contas não esperam.
+            </p>
+            <div class="bg-blue-50 p-4 rounded-lg">
+              <div class="text-sm text-blue-800">
+                <strong>Exemplo real:</strong> Vendeu R$ 100mil em dezembro
+                parcelado, mas precisa pagar fornecedor em janeiro.
+              </div>
+            </div>
+          </div>
+
+          <!-- Problema 2 -->
+          <div
+            class="bg-white rounded-2xl p-8 shadow-lg border-l-4 border-primary"
+          >
+            <div class="text-5xl mb-4 text-center">💸</div>
+            <h3 class="text-xl font-bold text-gray-900 mb-4 text-center">
+              Taxas Abusivas
+            </h3>
+            <p class="text-gray-600 text-center mb-4">
+              Factoring cobra 3-5% ao mês. Banco cobra ainda mais. Sua margem de
+              lucro desaparece.
+            </p>
+            <div class="bg-blue-50 p-4 rounded-lg">
+              <div class="text-sm text-blue-800">
+                <strong>Conta que dói:</strong> Em R$ 50mil, você perde R$ 2.500
+                só de taxa em 1 mês.
+              </div>
+            </div>
+          </div>
+
+          <!-- Problema 3 -->
+          <div
+            class="bg-white rounded-2xl p-8 shadow-lg border-l-4 border-primary"
+          >
+            <div class="text-5xl mb-4 text-center">📋</div>
+            <h3 class="text-xl font-bold text-gray-900 mb-4 text-center">
+              Burocracia Pesada
+            </h3>
+            <p class="text-gray-600 text-center mb-4">
+              Pilhas de documentos, garantias pessoais, filas no banco, processo
+              que demora semanas.
+            </p>
+            <div class="bg-blue-50 p-4 rounded-lg">
+              <div class="text-sm text-blue-800">
+                <strong>Tempo perdido:</strong> 15 dias em média para aprovar +
+                risco de não aprovar.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pain Points Stats -->
+        <div
+          class="bg-primary rounded-2xl p-8 text-white"
+        >
+          <h3 class="text-2xl font-bold text-center mb-8">
+            A Realidade das PMEs no Brasil
+          </h3>
+          <div class="grid md:grid-cols-4 gap-6 text-center">
+            <div>
+              <div class="text-3xl font-bold mb-2">67%</div>
+              <div class="text-blue-100">
+                Sofrem com falta de capital de giro
+              </div>
+            </div>
+            <div>
+              <div class="text-3xl font-bold mb-2">70%</div>
+              <div class="text-blue-100">Têm crédito negado pelos bancos</div>
+            </div>
+            <div>
+              <div class="text-3xl font-bold mb-2">40%</div>
+              <div class="text-blue-100">Fecham nos primeiros 5 anos</div>
+            </div>
+            <div>
+              <div class="text-3xl font-bold mb-2">R$ 127B</div>
+              <div class="text-blue-100">Gap de crédito no mercado</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section id="solucao" class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">
+            A Solução que sua PME Precisava
+          </h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Transforme seus recebíveis em dinheiro de forma simples, rápida e
+            barata. Sem complicação, sem burocracia.
+          </p>
+        </div>
+
+        <div class="space-y-16">
+          <!-- Step 1 -->
+          <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <div class="flex items-center mb-6">
+                <div
+                  class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xl mr-4"
+                >
+                  1
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900">
+                  Cadastro Inteligente
+                </h3>
+              </div>
+              <p class="text-lg text-gray-600 mb-6">
+                Conecte sua conta bancária via Open Banking. Nossa IA analisa
+                automaticamente seu histórico e verifica seus recebíveis em
+                tempo real.
+              </p>
+              <div class="grid grid-cols-2 gap-4">
+                <div class="bg-blue-50 p-4 rounded-lg">
+                  <div class="font-semibold text-blue-900">✓ Open Banking</div>
+                  <div class="text-sm text-blue-700">Conexão segura</div>
+                </div>
+                <div class="bg-blue-50 p-4 rounded-lg">
+                  <div class="font-semibold text-blue-900">✓ Análise IA</div>
+                  <div class="text-sm text-blue-700">Aprovação rápida</div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8"
+            >
+              <div class="text-center">
+                <div class="text-6xl mb-4">📱</div>
+                <div class="text-xl font-bold text-blue-900 mb-2">
+                  Cadastro em 5 minutos
+                </div>
+                <div class="text-blue-700">100% digital, sem papelada</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div class="lg:order-2">
+              <div class="flex items-center mb-6">
+                <div
+                  class="w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-xl mr-4"
+                >
+                  2
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900">
+                  Upload dos Recebíveis
+                </h3>
+              </div>
+              <p class="text-lg text-gray-600 mb-6">
+                Envie suas notas fiscais, contratos ou vendas parceladas.
+                Aceitamos cartão de crédito, boletos e contratos de prestação de
+                serviços.
+              </p>
+              <div class="space-y-3">
+                <div class="flex items-center">
+                  <svg
+                    class="w-5 h-5 text-green-500 mr-3"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                  <span class="text-gray-700">Cartões de crédito e débito</span>
+                </div>
+                <div class="flex items-center">
+                  <svg
+                    class="w-5 h-5 text-green-500 mr-3"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                  <span class="text-gray-700">Boletos bancários</span>
+                </div>
+                <div class="flex items-center">
+                  <svg
+                    class="w-5 h-5 text-green-500 mr-3"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                  <span class="text-gray-700"
+                    >Contratos de prestação de serviços</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div
+              class="lg:order-1 bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-8"
+            >
+              <div class="text-center">
+                <div class="text-6xl mb-4">💰</div>
+                <div class="text-xl font-bold text-green-900 mb-2">
+                  PIX em 24h
+                </div>
+                <div class="text-green-700">Dinheiro na sua conta</div>
+                <div class="mt-4 space-y-2">
+                  <div class="bg-white p-3 rounded-lg">
+                    <div class="text-sm text-green-600">Transferência via:</div>
+                    <div class="text-lg font-bold text-green-800">
+                      PIX Instantâneo
+                    </div>
+                  </div>
+                  <div class="bg-white p-3 rounded-lg">
+                    <div class="text-sm text-green-600">Disponível:</div>
+                    <div class="text-lg font-bold text-green-800">24/7</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section id="calculadora" class="py-20 gradient-bg relative">
+      <div class="tech-pattern absolute inset-0"></div>
+      <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold text-white mb-4">
+            Calcule sua Economia Real
+          </h2>
+          <p class="text-xl text-blue-100">
+            Veja quanto você pode economizar vs factoring tradicional
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-8 shadow-2xl">
+          <div class="grid lg:grid-cols-2 gap-8">
+            <!-- Input Section -->
+            <div>
+              <h3 class="text-2xl font-bold text-gray-900 mb-6">
+                Dados do seu Recebível
+              </h3>
+              <div class="space-y-6">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">
+                    Prazo para Recebimento (dias)
+                  </label>
+                  <input
+                    type="number"
+                    id="prazoRecebimento"
+                    value="60"
+                    min="7"
+                    max="365"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg"
+                    placeholder="Ex: 60"
+                  />
+                </div>
+
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">
+                    Tipo do seu Negócio
+                  </label>
+                  <select
+                    id="tipoNegocio"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg"
+                  >
+                    <option value="comercio">Comércio</option>
+                    <option value="servicos">Serviços</option>
+                    <option value="industria">Indústria</option>
+                    <option value="tecnologia">Tecnologia</option>
+                    <option value="saude">Saúde</option>
+                    <option value="alimentacao">Alimentação</option>
+                  </select>
+                </div>
+
+                <button
+                  onclick="calcularEconomia()"
+                  class="w-full bg-primary text-white py-4 rounded-lg text-lg font-semibold hover:bg-secondary transition-colors shadow-lg"
+                >
+                  🧮 Calcular Minha Economia
+                </button>
+              </div>
+            </div>
+
+            <!-- Results Section -->
+            <div>
+              <h3 class="text-2xl font-bold text-gray-900 mb-6">
+                Comparação de Resultados
+              </h3>
+              <div class="space-y-6">
+                <!-- Factoring Tradicional -->
+                <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                  <h4
+                    class="font-bold text-gray-800 text-lg mb-4 flex items-center"
+                  >
+                    <span class="text-2xl mr-2">😰</span>
+                    Factoring Tradicional
+                  </h4>
+                  <div class="space-y-2">
+                    <div class="flex justify-between">
+                      <span class="text-gray-700">Valor do recebível:</span>
+                      <span id="fact-valor" class="font-semibold"
+                        >R$ 50.000</span
+                      >
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-gray-700">Taxa (5% mês):</span>
+                      <span id="fact-taxa" class="font-semibold text-red-600"
+                        >- R$ 2.500</span
+                      >
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-gray-700">Prazo liberação:</span>
+                      <span class="font-semibold">7-15 dias</span>
+                    </div>
+                    <div
+                      class="flex justify-between pt-2 border-t border-gray-200"
+                    >
+                      <span class="font-bold text-gray-900">Você recebe:</span>
+                      <span
+                        id="fact-liquido"
+                        class="font-bold text-red-600 text-xl"
+                        >R$ 47.500</span
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <!-- RecToken -->
+                <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+                  <h4
+                    class="font-bold text-green-800 text-lg mb-4 flex items-center"
+                  >
+                    <span class="text-2xl mr-2">🚀</span>
+                    RecToken
+                  </h4>
+                  <div class="space-y-2">
+                    <div class="flex justify-between">
+                      <span class="text-gray-700">Valor do recebível:</span>
+                      <span id="rec-valor" class="font-semibold"
+                        >R$ 50.000</span
+                      >
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-gray-700">Taxa RecToken (2%):</span>
+                      <span id="rec-taxa" class="font-semibold text-green-600"
+                        >- R$ 1.000</span
+                      >
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-gray-700">Prazo liberação:</span>
+                      <span class="font-semibold text-green-600">24 horas</span>
+                    </div>
+                    <div
+                      class="flex justify-between pt-2 border-t border-green-200"
+                    >
+                      <span class="font-bold text-gray-900">Você recebe:</span>
+                      <span
+                        id="rec-liquido"
+                        class="font-bold text-green-600 text-xl"
+                        >R$ 49.000</span
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Economia -->
+                <div
+                  class="bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg p-6 text-center"
+                >
+                  <div class="text-white font-bold text-xl mb-2">
+                    💰 Sua Economia Total
+                  </div>
+                  <div
+                    id="economia-total"
+                    class="text-4xl font-bold text-white mb-2"
+                  >
+                    R$ 1.500
+                  </div>
+                  <div class="text-blue-100 text-sm">
+                    Em uma única operação +
+                    <span id="dias-economia" class="font-semibold">10x</span>
+                    mais rápido
+                  </div>
+                  <div class="mt-4 bg-white/20 rounded-lg p-3">
+                    <div class="text-white text-sm">
+                      💡 Em 12 operações por ano, você economiza:
+                      <span id="economia-anual" class="font-bold"
+                        >R$ 18.000</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Success Cases Section -->
+    <section id="casos" class="py-20 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">
+            Cases Reais de Sucesso
+          </h2>
+          <p class="text-xl text-gray-600">
+            Veja como outras PMEs usaram a RecToken para resolver problemas de
+            capital de giro
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- Case 1 -->
+          <div
+            class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow"
+          >
+            <div class="text-center mb-6">
+              <div class="text-5xl mb-4">🛒</div>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">
+                E-commerce de Roupas
+              </h3>
+              <div class="text-sm text-gray-500">
+                São Paulo • 15 funcionários
+              </div>
+            </div>
+
+            <div class="bg-blue-50 p-4 rounded-lg mb-4">
+              <div class="text-sm text-blue-800">
+                <strong>Situação:</strong> Black Friday gerou R$ 200mil em
+                vendas parceladas. Precisava comprar estoque para dezembro mas
+                dinheiro só entraria em março.
+              </div>
+            </div>
+
+            <div class="bg-green-50 p-4 rounded-lg mb-4">
+              <div class="text-sm text-green-800">
+                <strong>Solução RecToken:</strong> Antecipou R$ 180mil em 24h,
+                comprou estoque e vendeu mais R$ 150mil em dezembro.
+              </div>
+            </div>
+
+            <div class="bg-blue-50 p-4 rounded-lg">
+              <div class="text-center">
+                <div class="text-blue-800 font-bold">Resultado:</div>
+                <div class="text-2xl font-bold text-blue-600">+35%</div>
+                <div class="text-sm text-blue-700">
+                  Crescimento no faturamento
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Case 2 -->
+          <div
+            class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow"
+          >
+            <div class="text-center mb-6">
+              <div class="text-5xl mb-4">🔧</div>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">
+                Prestação de Serviços
+              </h3>
+              <div class="text-sm text-gray-500">
+                Rio de Janeiro • 8 funcionários
+              </div>
+            </div>
+
+            <div class="bg-blue-50 p-4 rounded-lg mb-4">
+              <div class="text-sm text-blue-800">
+                <strong>Situação:</strong> Fechou contrato de R$ 80mil para
+                entregar em 90 dias. Precisava contratar freelancers mas não
+                tinha capital.
+              </div>
+            </div>
+
+            <div class="bg-green-50 p-4 rounded-lg mb-4">
+              <div class="text-sm text-green-800">
+                <strong>Solução RecToken:</strong> Antecipou R$ 76mil, contratou
+                equipe especializada e entregou projeto 15 dias antes.
+              </div>
+            </div>
+
+            <div class="bg-blue-50 p-4 rounded-lg">
+              <div class="text-center">
+                <div class="text-blue-800 font-bold">Resultado:</div>
+                <div class="text-2xl font-bold text-blue-600">+3</div>
+                <div class="text-sm text-blue-700">
+                  Contratos similares fechados
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Case 3 -->
+          <div
+            class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow"
+          >
+            <div class="text-center mb-6">
+              <div class="text-5xl mb-4">🍕</div>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Restaurante</h3>
+              <div class="text-sm text-gray-500">
+                Belo Horizonte • 12 funcionários
+              </div>
+            </div>
+
+            <div class="bg-blue-50 p-4 rounded-lg mb-4">
+              <div class="text-sm text-blue-800">
+                <strong>Situação:</strong> Vendas de dezembro muito altas, mas
+                parceladas. Fornecedor cortou crédito e precisava pagar à vista.
+              </div>
+            </div>
+
+            <div class="bg-green-50 p-4 rounded-lg mb-4">
+              <div class="text-sm text-green-800">
+                <strong>Solução RecToken:</strong> Antecipou R$ 45mil das vendas
+                parceladas, manteve fornecedor e não perdeu movimento.
+              </div>
+            </div>
+
+            <div class="bg-blue-50 p-4 rounded-lg">
+              <div class="text-center">
+                <div class="text-blue-800 font-bold">Resultado:</div>
+                <div class="text-2xl font-bold text-blue-600">R$ 8mil</div>
+                <div class="text-sm text-blue-700">Economizou vs factoring</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial -->
+        <div class="mt-16 bg-primary rounded-2xl p-8 text-white">
+          <div class="max-w-4xl mx-auto text-center">
+            <div class="text-6xl mb-6">💬</div>
+            <blockquote class="text-2xl font-medium mb-6 italic">
+              "A RecToken salvou nosso final de ano. Em 24h tínhamos o dinheiro
+              na conta e pudemos aproveitar as oportunidades de dezembro.
+              Factoring tradicional demoraria 2 semanas e custaria o dobro."
+            </blockquote>
+            <div class="text-blue-200">
+              <div class="font-semibold">Maria Silva</div>
+              <div>Proprietária, Loja de Roupas Online</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">
+            Por que Escolher a RecToken?
+          </h2>
+          <p class="text-xl text-gray-600">
+            Todas as vantagens que sua PME precisa para crescer
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div
+            class="text-center p-6 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl"
+          >
+            <div class="text-4xl mb-4">⚡</div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">
+              10x Mais Rápido
+            </h3>
+            <p class="text-gray-600">
+              Dinheiro em 24h vs 15 dias do factoring. Aproveite oportunidades
+              sem esperar.
+            </p>
+          </div>
+
+          <div
+            class="text-center p-6 bg-gradient-to-br from-green-50 to-green-100 rounded-2xl"
+          >
+            <div class="text-4xl mb-4">💰</div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">
+              50% Mais Barato
+            </h3>
+            <p class="text-gray-600">
+              Taxa de 2% vs 5% ao mês do factoring. Mais dinheiro fica com você.
+            </p>
+          </div>
+
+          <div
+            class="text-center p-6 bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl"
+          >
+            <div class="text-4xl mb-4">🔓</div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Sem Garantias</h3>
+            <p class="text-gray-600">
+              Não precisa dar garantias pessoais ou bens como avalista.
+            </p>
+          </div>
+
+          <div
+            class="text-center p-6 bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-2xl"
+          >
+            <div class="text-4xl mb-4">📱</div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">100% Digital</h3>
+            <p class="text-gray-600">
+              Processo online completo. Sem filas, papelada ou visitas ao banco.
+            </p>
+          </div>
+
+          <div
+            class="text-center p-6 bg-gradient-to-br from-pink-50 to-pink-100 rounded-2xl"
+          >
+            <div class="text-4xl mb-4">🔍</div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">
+              Transparência Total
+            </h3>
+            <p class="text-gray-600">
+              Veja em tempo real status da operação. Blockchain garante
+              transparência.
+            </p>
+          </div>
+
+          <div
+            class="text-center p-6 bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-2xl"
+          >
+            <div class="text-4xl mb-4">🔄</div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Use Sempre</h3>
+            <p class="text-gray-600">
+              Não há limite de operações. Antecipe sempre que precisar de
+              capital.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 bg-gray-50">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">
+            Perguntas Frequentes
+          </h2>
+          <p class="text-xl text-gray-600">
+            Tire suas dúvidas sobre antecipação de recebíveis
+          </p>
+        </div>
+
+        <div class="space-y-6">
+          <div class="bg-white rounded-lg p-6 shadow-md">
+            <h3 class="text-lg font-semibold text-gray-900 mb-3">
+              Como funciona a antecipação de recebíveis?
+            </h3>
+            <p class="text-gray-600">
+              Você "vende" seus direitos de recebimento futuro para investidores
+              através da nossa plataforma. Recebe o dinheiro hoje e os
+              investidores recebem quando seu cliente pagar.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-lg p-6 shadow-md">
+            <h3 class="text-lg font-semibold text-gray-900 mb-3">
+              É seguro? Como vocês garantem o pagamento?
+            </h3>
+            <p class="text-gray-600">
+              Sim! Somos regulamentados pela CVM e usamos blockchain para
+              transparência. Nossa IA só aprova empresas com bom histórico de
+              recebimento.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-lg p-6 shadow-md">
+            <h3 class="text-lg font-semibold text-gray-900 mb-3">
+              Qual o valor mínimo e máximo?
+            </h3>
+            <p class="text-gray-600">
+              Mínimo de R$ 5.000 e máximo de R$ 500.000 por operação. Para
+              valores maiores, entre em contato conosco.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-lg p-6 shadow-md">
+            <h3 class="text-lg font-semibold text-gray-900 mb-3">
+              Que tipos de recebíveis vocês aceitam?
+            </h3>
+            <p class="text-gray-600">
+              Cartões de crédito/débito, boletos bancários, contratos de
+              prestação de serviços e notas fiscais de venda a prazo.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-lg p-6 shadow-md">
+            <h3 class="text-lg font-semibold text-gray-900 mb-3">
+              E se meu cliente não pagar o recebível?
+            </h3>
+            <p class="text-gray-600">
+              Você já recebeu antecipado, então o risco fica com os
+              investidores. Por isso nossa IA é rigorosa na aprovação.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-lg p-6 shadow-md">
+            <h3 class="text-lg font-semibold text-gray-900 mb-3">
+              Posso usar quantas vezes quiser?
+            </h3>
+            <p class="text-gray-600">
+              Sim! Não há limite de operações. Quanto mais você usa, melhor fica
+              seu score e menores ficam as taxas.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 gradient-bg relative overflow-hidden">
+      <div class="tech-pattern absolute inset-0"></div>
+      <div class="absolute inset-0 bg-black/10"></div>
+      <div class="relative max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+        <h2 class="text-4xl font-bold text-white mb-6">
+          Pronto para Acelerar seu Negócio?
+        </h2>
+        <p class="text-xl text-blue-100 mb-8">
+          Junte-se a centenas de PMEs que já anteciparam mais de R$ 50 milhões
+          com a RecToken. Cadastro gratuito e análise sem compromisso.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+          <button
+            class="bg-white text-primary px-8 py-4 rounded-lg text-lg font-bold hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg"
+          >
+            🚀 Começar Agora - É Grátis
+          </button>
+          <button
+            class="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-primary transition-all"
+          >
+            📞 Falar com Especialista
+          </button>
+        </div>
+
+        <div
+          class="flex justify-center items-center space-x-8 text-blue-100 text-sm"
+        >
+          <div class="flex items-center">
+            <svg
+              class="w-5 h-5 text-green-400 mr-2"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+            Cadastro gratuito
+          </div>
+          <div class="flex items-center">
+            <svg
+              class="w-5 h-5 text-green-400 mr-2"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+            Análise sem compromisso
+          </div>
+          <div class="flex items-center">
+            <svg
+              class="w-5 h-5 text-green-400 mr-2"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+            Dinheiro em 24h
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-4 gap-8">
+          <div>
+            <div class="flex items-center space-x-3 mb-6">
+              <div
+                class="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center"
+              >
+                <svg
+                  class="w-6 h-6 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13 10V3L4 14h7v7l9-11h-7z"
+                  ></path>
+                </svg>
+              </div>
+              <span class="text-2xl font-bold">RecToken</span>
+            </div>
+            <p class="text-gray-400 mb-6">
+              Capital de giro para PMEs em 24 horas. Rápido, barato e sem
+              burocracia.
+            </p>
+            <div class="text-gray-400 text-sm">
+              📍 São Paulo, SP<br />
+              📞 (11) 99999-9999<br />
+              ✉️ pme@rectoken.com.br
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold mb-6">Para PMEs</h3>
+            <ul class="space-y-3 text-gray-400">
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Como Funciona</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Simulador</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Casos de Sucesso</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Cadastre sua PME</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold mb-6">Suporte</h3>
+            <ul class="space-y-3 text-gray-400">
+              <li>
+                <a href="#" class="hover:text-white transition-colors">FAQ</a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Central de Ajuda</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >WhatsApp</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Chat Online</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold mb-6">Empresa</h3>
+            <ul class="space-y-3 text-gray-400">
+              <li>
+                <a href="index.html" class="hover:text-white transition-colors"
+                  >Sobre Nós</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Segurança</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Compliance</a
+                >
+              </li>
+              <li>
+                <a
+                  href="investidores.html"
+                  class="hover:text-white transition-colors"
+                  >Para Investidores</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div
+          class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center"
+        >
+          <p class="text-gray-400 text-sm">
+            © 2025 RecToken. Todos os direitos reservados. Regulado pela CVM.
+          </p>
+          <div class="flex space-x-6 mt-4 md:mt-0">
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white text-sm transition-colors"
+              >Privacidade</a
+            >
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white text-sm transition-colors"
+              >Termos</a
+            >
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white text-sm transition-colors"
+              >Cookies</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+      // Smooth scrolling para navegação
+      function scrollToSection(sectionId) {
+        document.getElementById(sectionId).scrollIntoView({
+          behavior: "smooth",
+        });
+      }
+
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Calculadora de economia
+      function calcularEconomia() {
+        const valor =
+          parseFloat(document.getElementById("valorRecebivel").value) || 50000;
+        const prazo =
+          parseInt(document.getElementById("prazoRecebimento").value) || 60;
+        const tipo = document.getElementById("tipoNegocio").value;
+
+        // Cálculo factoring tradicional (5% ao mês base)
+        let taxaFactoring = 0.05; // 5% ao mês base
+
+        // Ajuste por setor
+        switch (tipo) {
+          case "tecnologia":
+          case "saude":
+            taxaFactoring = 0.04; // Setores de menor risco
+            break;
+          case "alimentacao":
+          case "comercio":
+            taxaFactoring = 0.055; // Setores de maior risco
+            break;
+          default:
+            taxaFactoring = 0.05;
+        }
+
+        const custoFactoring = valor * taxaFactoring * (prazo / 30);
+        const liquidoFactoring = valor - custoFactoring;
+
+        // Cálculo RecToken (2-2.5% fixo)
+        let taxaRecToken = 0.02; // 2% base
+        if (valor < 10000) taxaRecToken = 0.025; // 2.5% para valores menores
+        if (valor > 100000) taxaRecToken = 0.018; // 1.8% para valores maiores
+
+        const custoRecToken = valor * taxaRecToken;
+        const liquidoRecToken = valor - custoRecToken;
+
+        // Economia
+        const economia = liquidoRecToken - liquidoFactoring;
+        const economiaAnual = economia * 12; // 12 operações por ano
+        const velocidadeVantagem = Math.round(15 / 1); // 15 dias vs 1 dia
+
+        // Atualizar display
+        document.getElementById(
+          "fact-valor"
+        ).textContent = `R$ ${valor.toLocaleString("pt-BR")}`;
+        document.getElementById(
+          "fact-taxa"
+        ).textContent = `- R$ ${custoFactoring.toLocaleString("pt-BR")}`;
+        document.getElementById(
+          "fact-liquido"
+        ).textContent = `R$ ${liquidoFactoring.toLocaleString("pt-BR")}`;
+
+        document.getElementById(
+          "rec-valor"
+        ).textContent = `R$ ${valor.toLocaleString("pt-BR")}`;
+        document.getElementById(
+          "rec-taxa"
+        ).textContent = `- R$ ${custoRecToken.toLocaleString("pt-BR")}`;
+        document.getElementById(
+          "rec-liquido"
+        ).textContent = `R$ ${liquidoRecToken.toLocaleString("pt-BR")}`;
+
+        document.getElementById(
+          "economia-total"
+        ).textContent = `R$ ${economia.toLocaleString("pt-BR")}`;
+        document.getElementById(
+          "economia-anual"
+        ).textContent = `R$ ${economiaAnual.toLocaleString("pt-BR")}`;
+        document.getElementById(
+          "dias-economia"
+        ).textContent = `${velocidadeVantagem}x`;
+      }
+
+      // Recalcular quando os valores mudarem
+      document
+        .getElementById("valorRecebivel")
+        .addEventListener("input", calcularEconomia);
+      document
+        .getElementById("prazoRecebimento")
+        .addEventListener("input", calcularEconomia);
+      document
+        .getElementById("tipoNegocio")
+        .addEventListener("change", calcularEconomia);
+
+      // Animação do header no scroll
+      window.addEventListener("scroll", function () {
+        const header = document.querySelector("nav");
+        if (window.scrollY > 100) {
+          header.classList.add("bg-white/98");
+          header.classList.remove("bg-white/95");
+        } else {
+          header.classList.add("bg-white/95");
+          header.classList.remove("bg-white/98");
+        }
+      });
+
+      // Intersection Observer para animações
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("fade-in");
+          }
+        });
+      }, observerOptions);
+
+      // Observar seções para animação
+      document.querySelectorAll("section").forEach((section) => {
+        observer.observe(section);
+      });
+
+      // Inicializar cálculos
+      document.addEventListener("DOMContentLoaded", function () {
+        calcularEconomia();
+      });
+    </script>
+  </body>
+</html>block text-sm font-medium text-gray-700 mb-2">
+                    Valor do Recebível (R$)
+                  </label>
+                  <input
+                    type="number"
+                    id="valorRecebivel"
+                    value="50000"
+                    min="5000"
+                    max="1000000"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-lg"
+                    placeholder="Ex: 50000"
+                  />
+                </div>
+
+                <div>
+                  <label class="
