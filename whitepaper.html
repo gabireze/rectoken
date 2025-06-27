@@ -1,0 +1,2059 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RecToken Whitepaper - Tokenização de Recebíveis no Brasil</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1e3a8a",
+              secondary: "#1e40af",
+              accent: "#3b82f6",
+              dark: "#0f172a",
+              "blue-950": "#172554",
+            },
+            fontFamily: {
+              sans: ["Inter", "system-ui", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .gradient-bg {
+        background: linear-gradient(
+          135deg,
+          #0f172a 0%,
+          #1e3a8a 50%,
+          #1e40af 100%
+        );
+      }
+      .tech-pattern {
+        background-image: radial-gradient(
+            circle at 25% 25%,
+            rgba(59, 130, 246, 0.1) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 75% 75%,
+            rgba(30, 64, 175, 0.1) 0%,
+            transparent 50%
+          );
+      }
+      .whitepaper-content {
+        line-height: 1.8;
+      }
+      .toc-item {
+        transition: all 0.2s ease;
+      }
+      .toc-item:hover {
+        background-color: rgba(59, 130, 246, 0.1);
+        transform: translateX(4px);
+      }
+      .section-anchor {
+        scroll-margin-top: 100px;
+      }
+      @media print {
+        .no-print {
+          display: none !important;
+        }
+        body {
+          font-size: 12pt;
+          line-height: 1.6;
+        }
+      }
+    </style>
+  </head>
+  <body class="font-sans antialiased bg-white">
+    <!-- Navigation -->
+    <nav
+      class="no-print fixed w-full z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <a
+            href="index.html"
+            class="flex items-center space-x-3 hover:opacity-80 transition-opacity"
+          >
+            <div
+              class="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center"
+            >
+              <svg
+                class="w-6 h-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 10V3L4 14h7v7l9-11h-7z"
+                ></path>
+              </svg>
+            </div>
+            <div>
+              <span class="text-2xl font-bold text-primary">RecToken</span>
+              <span
+                class="ml-2 bg-blue-600 text-white px-2 py-1 text-xs rounded-full font-medium"
+                >WHITEPAPER</span
+              >
+            </div>
+          </a>
+
+          <div class="hidden md:flex items-center space-x-6">
+            <a
+              href="index.html"
+              class="text-gray-700 hover:text-primary transition-colors font-medium"
+              >Principal</a
+            >
+            <a
+              href="pme.html"
+              class="text-gray-700 hover:text-primary transition-colors font-medium"
+              >Para PMEs</a
+            >
+            <a
+              href="investidores.html"
+              class="text-gray-700 hover:text-primary transition-colors font-medium"
+              >Para Investidores</a
+            >
+            <button
+              onclick="window.print()"
+              class="text-gray-700 hover:text-primary transition-colors font-medium"
+            >
+              📄 Imprimir
+            </button>
+          </div>
+
+          <div class="flex items-center space-x-4">
+            <a
+              href="#download"
+              class="bg-primary text-white px-6 py-2 rounded-lg hover:bg-secondary transition-colors font-semibold"
+              >Download PDF</a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-16 pb-8 gradient-bg relative overflow-hidden no-print">
+      <div class="tech-pattern absolute inset-0"></div>
+      <div
+        class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 text-center"
+      >
+        <h1 class="text-5xl font-bold text-white mb-6">RecToken Whitepaper</h1>
+        <p class="text-xl text-blue-100 mb-8">
+          Tokenização de Recebíveis para PMEs: Revolucionando o Mercado
+          Brasileiro de Capital de Giro
+        </p>
+        <div class="flex justify-center space-x-4 text-sm text-blue-200">
+          <span>📅 Janeiro 2025</span>
+          <span>📊 Versão 1.0</span>
+          <span>🔒 Regulamentado CVM</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Table of Contents -->
+    <section class="no-print py-8 bg-gray-50 border-b">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Índice</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="space-y-2">
+            <a href="#sumario" class="toc-item block p-3 rounded-lg border"
+              >1. Sumário Executivo</a
+            >
+            <a href="#problema" class="toc-item block p-3 rounded-lg border"
+              >2. Definição do Problema</a
+            >
+            <a href="#solucao" class="toc-item block p-3 rounded-lg border"
+              >3. Nossa Solução</a
+            >
+            <a href="#mercado" class="toc-item block p-3 rounded-lg border"
+              >4. Análise de Mercado</a
+            >
+            <a href="#tecnologia" class="toc-item block p-3 rounded-lg border"
+              >5. Arquitetura Tecnológica</a
+            >
+          </div>
+          <div class="space-y-2">
+            <a href="#regulacao" class="toc-item block p-3 rounded-lg border"
+              >6. Marco Regulatório</a
+            >
+            <a href="#modelo" class="toc-item block p-3 rounded-lg border"
+              >7. Modelo de Negócio</a
+            >
+            <a href="#financeiro" class="toc-item block p-3 rounded-lg border"
+              >8. Projeções Financeiras</a
+            >
+            <a
+              href="#implementacao"
+              class="toc-item block p-3 rounded-lg border"
+              >9. Roadmap de Implementação</a
+            >
+            <a href="#conclusao" class="toc-item block p-3 rounded-lg border"
+              >10. Conclusão</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <main
+      class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 whitepaper-content"
+    >
+      <!-- 1. Sumário Executivo -->
+      <section id="sumario" class="section-anchor mb-16">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">
+          1. Sumário Executivo
+        </h2>
+
+        <div class="bg-blue-50 border-l-4 border-primary p-6 mb-8">
+          <h3 class="text-xl font-bold text-primary mb-4">
+            Oportunidade de Mercado
+          </h3>
+          <p class="text-gray-700">
+            O Brasil apresenta uma
+            <strong>oportunidade de R$ 600 bilhões</strong> em demanda não
+            atendida por financiamento de PMEs, suportada por frameworks
+            regulatórios progressivos, infraestrutura madura de mercados de
+            capitais e competição direta limitada em tokenização nativa de
+            recebíveis via blockchain.
+          </p>
+        </div>
+
+        <p class="text-gray-700 mb-6">
+          A RecToken surge como uma plataforma pioneira de tokenização de
+          recebíveis focada em democratizar o acesso ao capital de giro para
+          Pequenas e Médias Empresas (PMEs) brasileiras. Nossa solução conecta
+          PMEs que precisam de financiamento rápido com investidores que buscam
+          retornos atrativos, utilizando tecnologia blockchain para criar
+          transparência, eficiência e liquidez.
+        </p>
+
+        <div class="grid md:grid-cols-3 gap-6 mb-8">
+          <div
+            class="bg-white border border-gray-200 rounded-lg p-6 text-center"
+          >
+            <div class="text-3xl font-bold text-primary mb-2">R$ 93B</div>
+            <div class="text-gray-600">Mercado de Factoring Brasileiro</div>
+          </div>
+          <div
+            class="bg-white border border-gray-200 rounded-lg p-6 text-center"
+          >
+            <div class="text-3xl font-bold text-green-600 mb-2">20.3M</div>
+            <div class="text-gray-600">PMEs no Brasil</div>
+          </div>
+          <div
+            class="bg-white border border-gray-200 rounded-lg p-6 text-center"
+          >
+            <div class="text-3xl font-bold text-blue-600 mb-2">18-24%</div>
+            <div class="text-gray-600">Retorno Anual Projetado</div>
+          </div>
+        </div>
+
+        <h3 class="text-xl font-bold text-gray-900 mb-4">Proposta de Valor</h3>
+        <div class="grid md:grid-cols-2 gap-8 mb-8">
+          <div>
+            <h4 class="font-bold text-primary mb-3">Para PMEs:</h4>
+            <ul class="space-y-2 text-gray-700">
+              <li>
+                • <strong>Rapidez:</strong> Capital em 24h vs 15 dias do
+                factoring tradicional
+              </li>
+              <li>
+                • <strong>Custo:</strong> 18-24% ao ano vs 36-60% do factoring
+              </li>
+              <li>
+                • <strong>Simplicidade:</strong> Processo 100% digital sem
+                garantias pessoais
+              </li>
+              <li>
+                • <strong>Transparência:</strong> Acompanhamento em tempo real
+                via blockchain
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-bold text-primary mb-3">Para Investidores:</h4>
+            <ul class="space-y-2 text-gray-700">
+              <li>
+                • <strong>Retorno:</strong> 18-24% ao ano, superior ao CDI
+              </li>
+              <li>
+                • <strong>Acessibilidade:</strong> Investimento mínimo de R$ 100
+              </li>
+              <li>• <strong>Diversificação:</strong> Nova classe de ativos</li>
+              <li>• <strong>Liquidez:</strong> Mercado secundário de tokens</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Definição do Problema -->
+      <section id="problema" class="section-anchor mb-16">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">
+          2. Definição do Problema
+        </h2>
+
+        <h3 class="text-xl font-bold text-gray-900 mb-4">
+          2.1 O Desafio das PMEs Brasileiras
+        </h3>
+        <p class="text-gray-700 mb-6">
+          As PMEs representam <strong>99% das empresas brasileiras</strong> e
+          geram <strong>52% dos empregos formais</strong>, mas enfrentam um
+          cenário crítico de financiamento:
+        </p>
+
+        <div class="bg-red-50 border-l-4 border-red-500 p-6 mb-8">
+          <h4 class="font-bold text-red-800 mb-3">Crise de Capital de Giro</h4>
+          <ul class="space-y-2 text-red-700">
+            <li>
+              • <strong>67%</strong> das PMEs brasileiras sofrem com falta de
+              capital de giro
+            </li>
+            <li>• Gap de crédito de <strong>R$ 127,8 bilhões</strong></li>
+            <li>
+              • PMEs pagam <strong>23,9% ao ano</strong> em crédito livre vs
+              <strong>13,5%</strong> em crédito direcionado
+            </li>
+            <li>
+              • <strong>70%</strong> dos pedidos de crédito são rejeitados pelos
+              bancos
+            </li>
+          </ul>
+        </div>
+
+        <h3 class="text-xl font-bold text-gray-900 mb-4">
+          2.2 Limitações do Factoring Tradicional
+        </h3>
+        <div class="overflow-x-auto mb-8">
+          <table class="w-full border-collapse border border-gray-300">
+            <thead class="bg-gray-50">
+              <tr>
+                <th class="border border-gray-300 px-4 py-3 text-left">
+                  Aspecto
+                </th>
+                <th class="border border-gray-300 px-4 py-3 text-left">
+                  Factoring Tradicional
+                </th>
+                <th class="border border-gray-300 px-4 py-3 text-left">
+                  Impacto nas PMEs
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="border border-gray-300 px-4 py-3 font-medium">
+                  Taxa
+                </td>
+                <td class="border border-gray-300 px-4 py-3">36-60% ao ano</td>
+                <td class="border border-gray-300 px-4 py-3 text-red-600">
+                  Redução drástica da margem
+                </td>
+              </tr>
+              <tr class="bg-gray-50">
+                <td class="border border-gray-300 px-4 py-3 font-medium">
+                  Prazo
+                </td>
+                <td class="border border-gray-300 px-4 py-3">7-15 dias</td>
+                <td class="border border-gray-300 px-4 py-3 text-orange-600">
+                  Perda de oportunidades
+                </td>
+              </tr>
+              <tr>
+                <td class="border border-gray-300 px-4 py-3 font-medium">
+                  Burocracia
+                </td>
+                <td class="border border-gray-300 px-4 py-3">
+                  Extensa documentação
+                </td>
+                <td class="border border-gray-300 px-4 py-3 text-red-600">
+                  Alto custo operacional
+                </td>
+              </tr>
+              <tr class="bg-gray-50">
+                <td class="border border-gray-300 px-4 py-3 font-medium">
+                  Garantias
+                </td>
+                <td class="border border-gray-300 px-4 py-3">
+                  Pessoais dos sócios
+                </td>
+                <td class="border border-gray-300 px-4 py-3 text-red-600">
+                  Risco patrimonial elevado
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="text-xl font-bold text-gray-900 mb-4">
+          2.3 Lacunas no Mercado de Investimentos
+        </h3>
+        <p class="text-gray-700 mb-6">
+          Investidores pessoa física enfrentam limitações significativas:
+        </p>
+        <ul class="space-y-2 text-gray-700 mb-6">
+          <li>
+            • <strong>Baixa rentabilidade:</strong> Poupança oferece apenas
+            6,17% ao ano
+          </li>
+          <li>
+            • <strong>Falta de diversificação:</strong> Poucas opções entre
+            renda fixa e variável
+          </li>
+          <li>
+            • <strong>Altas barreiras de entrada:</strong> Investimentos
+            alternativos exigem valores elevados
+          </li>
+          <li>
+            • <strong>Falta de transparência:</strong> Produtos complexos com
+            pouca clareza sobre riscos
+          </li>
+        </ul>
+      </section>
+
+      <!-- 3. Nossa Solução -->
+      <section id="solucao" class="section-anchor mb-16">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">
+          3. Nossa Solução: Tokenização de Recebíveis
+        </h2>
+
+        <h3 class="text-xl font-bold text-gray-900 mb-4">
+          3.1 Como Funciona a RecToken
+        </h3>
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-8">
+          <p class="text-blue-800 mb-4">
+            <strong>A RecToken atua como uma ponte tecnológica</strong> que
+            conecta PMEs com necessidades de capital de giro a investidores que
+            buscam retornos atrativos, utilizando blockchain para garantir
+            transparência, segurança e eficiência.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 mb-8">
+          <div class="bg-white border border-gray-200 rounded-lg p-6">
+            <h4 class="font-bold text-primary mb-4">🏢 Fluxo para PMEs</h4>
+            <ol class="space-y-3 text-gray-700">
+              <li>
+                <strong>1. Cadastro Inteligente:</strong> Conexão via Open
+                Banking para análise automática
+              </li>
+              <li>
+                <strong>2. Upload de Recebíveis:</strong> Notas fiscais,
+                contratos ou vendas parceladas
+              </li>
+              <li>
+                <strong>3. Análise de IA:</strong> Avaliação de risco em tempo
+                real
+              </li>
+              <li>
+                <strong>4. Tokenização:</strong> Criação de tokens representando
+                frações dos recebíveis
+              </li>
+              <li>
+                <strong>5. Recebimento:</strong> Capital em conta via PIX em até
+                24h
+              </li>
+            </ol>
+          </div>
+
+          <div class="bg-white border border-gray-200 rounded-lg p-6">
+            <h4 class="font-bold text-primary mb-4">
+              👥 Fluxo para Investidores
+            </h4>
+            <ol class="space-y-3 text-gray-700">
+              <li>
+                <strong>1. KYC Simplificado:</strong> Cadastro rápido com
+                validação automática
+              </li>
+              <li>
+                <strong>2. Exploração:</strong> Visualização de oportunidades
+                por setor/prazo/risco
+              </li>
+              <li>
+                <strong>3. Investimento:</strong> Compra de tokens a partir de
+                R$ 100
+              </li>
+              <li>
+                <strong>4. Acompanhamento:</strong> Monitoramento em tempo real
+                via blockchain
+              </li>
+              <li>
+                <strong>5. Retorno:</strong> Recebimento automático conforme
+                vencimento
+              </li>
+            </ol>
+          </div>
+        </div>
+
+        <h3 class="text-xl font-bold text-gray-900 mb-4">
+          3.2 Exemplo Prático de Operação
+        </h3>
+        <div class="bg-gray-50 border border-gray-200 rounded-lg p-6 mb-8">
+          <h4 class="font-bold text-gray-900 mb-4">
+            Caso: E-commerce de Eletrônicos
+          </h4>
+          <div class="grid md:grid-cols-3 gap-6">
+            <div>
+              <h5 class="font-bold text-gray-800 mb-2">Situação</h5>
+              <ul class="text-sm text-gray-700 space-y-1">
+                <li>• Vendeu R$ 100.000 parcelado</li>
+                <li>• Recebimento em 60 dias</li>
+                <li>• Precisa comprar estoque</li>
+              </ul>
+            </div>
+            <div>
+              <h5 class="font-bold text-gray-800 mb-2">Tokenização</h5>
+              <ul class="text-sm text-gray-700 space-y-1">
+                <li>• 1.000 tokens de R$ 100</li>
+                <li>• Taxa RecToken: 2%</li>
+                <li>• PME recebe: R$ 98.000</li>
+              </ul>
+            </div>
+            <div>
+              <h5 class="font-bold text-gray-800 mb-2">Investidores</h5>
+              <ul class="text-sm text-gray-700 space-y-1">
+                <li>• 100 investidores</li>
+                <li>• R$ 1.000 cada um</li>
+                <li>• Retorno: 12% em 60 dias</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="text-xl font-bold text-gray-900 mb-4">
+          3.3 Diferenciais Competitivos
+        </h3>
+        <div class="grid md:grid-cols-2 gap-6 mb-8">
+          <div class="bg-green-50 border-l-4 border-green-500 p-6">
+            <h4 class="font-bold text-green-800 mb-3">
+              Vantagens Tecnológicas
+            </h4>
+            <ul class="space-y-2 text-green-700">
+              <li>
+                • <strong>Transparência Blockchain:</strong> Rastreabilidade
+                completa
+              </li>
+              <li>
+                • <strong>Automação IA:</strong> Análise de risco em tempo real
+              </li>
+              <li>
+                • <strong>Integração Nativa:</strong> PIX, Open Banking, DREX
+              </li>
+              <li>
+                • <strong>Eficiência Operacional:</strong> 95% dos processos
+                automatizados
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-blue-50 border-l-4 border-blue-500 p-6">
+            <h4 class="font-bold text-blue-800 mb-3">Vantagens de Mercado</h4>
+            <ul class="space-y-2 text-blue-700">
+              <li>
+                • <strong>Democratização:</strong> Acesso a partir de R$ 100
+              </li>
+              <li>• <strong>Liquidez:</strong> Mercado secundário de tokens</li>
+              <li>• <strong>Compliance:</strong> Regulamentação CVM</li>
+              <li>
+                • <strong>Escalabilidade:</strong> Sem limitação de capital
+                próprio
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Análise de Mercado -->
+      <section id="mercado" class="section-anchor mb-16">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">
+          4. Análise de Mercado
+        </h2>
+
+        <h3 class="text-xl font-bold text-gray-900 mb-4">
+          4.1 Dimensões do Mercado
+        </h3>
+        <div class="grid md:grid-cols-3 gap-6 mb-8">
+          <div
+            class="bg-white border border-gray-200 rounded-lg p-6 text-center"
+          >
+            <h4 class="font-bold text-primary mb-2">TAM</h4>
+            <div class="text-2xl font-bold text-gray-900 mb-2">R$ 500B</div>
+            <p class="text-sm text-gray-600">
+              18 milhões de PMEs • Volume anual de recebíveis
+            </p>
+          </div>
+          <div
+            class="bg-white border border-gray-200 rounded-lg p-6 text-center"
+          >
+            <h4 class="font-bold text-primary mb-2">SAM</h4>
+            <div class="text-2xl font-bold text-gray-900 mb-2">R$ 100B</div>
+            <p class="text-sm text-gray-600">
+              2 milhões de PMEs • Faturamento R$ 500K-10M
+            </p>
+          </div>
+          <div
+            class="bg-white border border-gray-200 rounded-lg p-6 text-center"
+          >
+            <h4 class="font-bold text-primary mb-2">SOM</h4>
+            <div class="text-2xl font-bold text-gray-900 mb-2">R$ 1B</div>
+            <p class="text-sm text-gray-600">
+              1% market share • 5.000 PMEs ativas
+            </p>
+          </div>
+        </div>
+
+        <h3 class="text-xl font-bold text-gray-900 mb-4">
+          4.2 Perfil das PMEs Brasileiras
+        </h3>
+        <div class="grid md:grid-cols-2 gap-8 mb-8">
+          <div>
+            <h4 class="font-bold text-gray-800 mb-3">Distribuição Setorial</h4>
+            <div class="space-y-3">
+              <div class="flex justify-between items-center">
+                <span class="text-gray-700">Serviços</span>
+                <span class="font-bold text-blue-600">61%</span>
+              </div>
+              <div class="w-full bg-gray-200 rounded-full h-2">
+                <div
+                  class="bg-blue-600 h-2 rounded-full"
+                  style="width: 61%"
+                ></div>
+              </div>
+
+              <div class="flex justify-between items-center">
+                <span class="text-gray-700">Comércio</span>
+                <span class="font-bold text-green-600">25.6%</span>
+              </div>
+              <div class="w-full bg-gray-200 rounded-full h-2">
+                <div
+                  class="bg-green-600 h-2 rounded-full"
+                  style="width: 25.6%"
+                ></div>
+              </div>
+
+              <div class="flex justify-between items-center">
+                <span class="text-gray-700">Indústria</span>
+                <span class="font-bold text-purple-600">7.9%</span>
+              </div>
+              <div class="w-full bg-gray-200 rounded-full h-2">
+                <div
+                  class="bg-purple-600 h-2 rounded-full"
+                  style="width: 7.9%"
+                ></div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="font-bold text-gray-800 mb-3">
+              Características do Mercado
+            </h4>
+            <ul class="space-y-2 text-gray-700">
+              <li>• <strong>71%</strong> são empresas familiares</li>
+              <li>
+                • <strong>67%</strong> enfrentam problemas de capital de giro
+              </li>
+              <li>
+                • <strong>Ciclos longos:</strong> 30-60 dias para recebimento
+              </li>
+              <li>
+                • <strong>Concentração geográfica:</strong> 60% em SP, RJ, MG
+              </li>
+              <li>
+                • <strong>Digitalização crescente:</strong> 78% usam plataformas
+                digitais
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <h3 class="text-xl font-bold text-gray-900 mb-4">
+          4.3 Cenário Competitivo
+        </h3>
+        <div class="overflow-x-auto mb-8">
+          <table class="w-full border-collapse border border-gray-300">
+            <thead class="bg-gray-50">
+              <tr>
+                <th class="border border-gray-300 px-4 py-3 text-left">
+                  Player
+                </th>
+                <th class="border border-gray-300 px-4 py-3 text-left">
+                  Modelo
+                </th>
+                <th class="border border-gray-300 px-4 py-3 text-left">
+                  Volume
+                </th>
+                <th class="border border-gray-300 px-4 py-3 text-left">
+                  Diferencial
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="border border-gray-300 px-4 py-3 font-medium">
+                  Factoring Tradicional
+                </td>
+                <td class="border border-gray-300 px-4 py-3">
+                  Compra de recebíveis
+                </td>
+                <td class="border border-gray-300 px-4 py-3">R$ 93B</td>
+                <td class="border border-gray-300 px-4 py-3">
+                  Estabelecido, mas caro
+                </td>
+              </tr>
+              <tr class="bg-gray-50">
+                <td class="border border-gray-300 px-4 py-3 font-medium">
+                  CloudWalk/InfinitePay
+                </td>
+                <td class="border border-gray-300 px-4 py-3">
+                  Antecipação embutida
+                </td>
+                <td class="border border-gray-300 px-4 py-3">R$ 2.7B</td>
+                <td class="border border-gray-300 px-4 py-3">
+                  Integrado ao pagamento
+                </td>
+              </tr>
+              <tr>
+                <td class="border border-gray-300 px-4 py-3 font-medium">
+                  Nexoos
+                </td>
+                <td class="border border-gray-300 px-4 py-3">P2P lending</td>
+                <td class="border border-gray-300 px-4 py-3">R$ 500M</td>
+                <td class="border border-gray-300 px-4 py-3">
+                  Marketplace direto
+                </td>
+              </tr>
+              <tr class="bg-gray-50">
+                <td class="border border-gray-300 px-4 py-3 font-medium">
+                  RecToken
+                </td>
+                <td class="border border-gray-300 px-4 py-3">
+                  Tokenização blockchain
+                </td>
+                <td class="border border-gray-300 px-4 py-3">
+                  R$ 1B (meta 3 anos)
+                </td>
+                <td class="border border-gray-300 px-4 py-3">
+                  Transparência + Liquidez
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="text-xl font-bold text-gray-900 mb-4">
+          4.4 Tendências de Mercado
+        </h3>
+        <div class="grid md:grid-cols-2 gap-6 mb-8">
+          <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+            <h4 class="font-bold text-blue-800 mb-3">
+              Digitalização Acelerada
+            </h4>
+            <ul class="space-y-2 text-blue-700">
+              <li>• PIX revolucionou pagamentos (140M+ usuários)</li>
+              <li>• Open Banking em expansão (15M+ clientes)</li>
+              <li>• DREX chegando em 2025</li>
+              <li>• 78% das PMEs usam ferramentas digitais</li>
+            </ul>
+          </div>
+
+          <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+            <h4 class="font-bold text-green-800 mb-3">
+              Regulamentação Favorável
+            </h4>
+            <ul class="space-y-2 text-green-700">
+              <li>• CVM 88/22 permite tokenização via crowdfunding</li>
+              <li>• Lei VASP regulamenta ativos virtuais</li>
+              <li>• Marco Legal das Startups oferece sandbox</li>
+              <li>• Brasil líder mundial em tokenização</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. Arquitetura Tecnológica -->
+      <section id="tecnologia" class="section-anchor mb-16">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">
+          5. Arquitetura Tecnológica
+        </h2>
+
+        <h3 class="text-xl font-bold text-gray-900 mb-4">
+          5.1 Stack Tecnológico
+        </h3>
+        <div class="bg-gray-50 border border-gray-200 rounded-lg p-6 mb-8">
+          <div class="grid md:grid-cols-3 gap-6">
+            <div>
+              <h4 class="font-bold text-gray-800 mb-3">Blockchain Layer</h4>
+              <ul class="text-sm text-gray-700 space-y-1">
+                <li>• <strong>Polygon:</strong> 65.000 TPS, $0,001/tx</li>
+                <li>• <strong>Smart Contracts:</strong> Solidity</li>
+                <li>• <strong>Oráculos:</strong> Chainlink para dados</li>
+                <li>• <strong>Storage:</strong> IPFS para documentos</li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 class="font-bold text-gray-800 mb-3">Integração Layer</h4>
+              <ul class="text-sm text-gray-700 space-y-1">
+                <li>• <strong>PIX:</strong> Liquidação 24/7</li>
+                <li>• <strong>Open Banking:</strong> Análise automática</li>
+                <li>• <strong>DREX:</strong> Contratos inteligentes</li>
+                <li>• <strong>APIs ERP:</strong> Omie, Tiny, ContaAzul</li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 class="font-bold text-gray-800 mb-3">Application Layer</h4>
+              <ul class="text-sm text-gray-700 space-y-1">
+                <li>• <strong>Frontend:</strong> React/Next.js</li>
+                <li>• <strong>Backend:</strong> Node.js/TypeScript</li>
+                <li>• <strong>Database:</strong> PostgreSQL</li>
+                <li>• <strong>Mobile:</strong> React Native</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="text-xl font-bold text-gray-900 mb-4">
+          5.2 Arquitetura de Segurança
+        </h3>
+        <div class="grid md:grid-cols-2 gap-6 mb-8">
+          <div class="bg-red-50 border border-red-200 rounded-lg p-6">
+            <h4 class="font-bold text-red-800 mb-3">Proteção de Dados</h4>
+            <ul class="space-y-2 text-red-700">
+              <li>• <strong>Criptografia:</strong> AES-256 end-to-end</li>
+              <li>• <strong>LGPD Compliance:</strong> Anonimização de dados</li>
+              <li>• <strong>Multi-signature:</strong> Carteiras seguras</li>
+              <li>• <strong>Backup:</strong> Redundância geográfica</li>
+            </ul>
+          </div>
+
+          <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+            <h4 class="font-bold text-blue-800 mb-3">Auditoria e Compliance</h4>
+            <ul class="space-y-2 text-blue-700">
+              <li>
+                • <strong>Smart Contract Audit:</strong> Consensys/OpenZeppelin
+              </li>
+              <li>• <strong>KYC/AML:</strong> Serasa Experian</li>
+              <li>• <strong>Monitoring:</strong> Logs imutáveis blockchain</li>
+              <li>
+                • <strong>Penetration Testing:</strong> Testes trimestrais
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <h3 class="text-xl font-bold text-gray-900 mb-4">
+          5.3 IA de Credit Scoring
+        </h3>
+        <div class="bg-purple-50 border border-purple-200 rounded-lg p-6 mb-8">
+          <h4 class="font-bold text-purple-800 mb-4">
+            Algoritmo de Análise de Risco
+          </h4>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <h5 class="font-bold text-purple-700 mb-2">
+                Variáveis Analisadas
+              </h5>
+              <ul class="text-sm text-purple-700 space-y-1">
+                <li>• Histórico de recebimentos (24 meses)</li>
+                <li>• Perfil do devedor (score CPF/CNPJ)</li>
+                <li>• Setor econômico e sazonalidade</li>
+                <li>• Fluxo de caixa histórico</li>
+                <li>• Relacionamento bancário</li>
+              </ul>
+            </div>
+            <div>
+              <h5 class="font-bold text-purple-700 mb-2">Score de Risco</h5>
+              <ul class="text-sm text-purple-700 space-y-1">
+                <li>
+                  • <strong>A (9-10):</strong> Risco muito baixo (18% a.a.)
+                </li>
+                <li>• <strong>B (7-8):</strong> Risco baixo (20% a.a.)</li>
+                <li>• <strong>C (5-6):</strong> Risco médio (22% a.a.)</li>
+                <li>• <strong>D (0-4):</strong> Rejeitado automaticamente</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="text-xl font-bold text-gray-900 mb-4">
+          5.4 Integração DREX
+        </h3>
+        <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-8">
+          <p class="text-green-800 mb-4">
+            A integração com o Real Digital (DREX) em 2025 permitirá:
+          </p>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <h5 class="font-bold text-green-700 mb-2">
+                Funcionalidades Técnicas
+              </h5>
+              <ul class="text-sm text-green-700 space-y-1">
+                <li>• Contratos inteligentes nativos</li>
+                <li>• Liquidação instantânea 24/7</li>
+                <li>• Programabilidade de pagamentos</li>
+                <li>• Integração direta com BC</li>
+              </ul>
+            </div>
+            <div>
+              <h5 class="font-bold text-green-700 mb-2">
+                Benefícios Operacionais
+              </h5>
+              <ul class="text-sm text-green-700 space-y-1">
+                <li>• Redução de custos de transação</li>
+                <li>• Eliminação de intermediários</li>
+                <li>• Compliance automático</li>
+                <li>• Rastreabilidade total</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. Marco Regulatório -->
+      <section id="regulacao" class="section-anchor mb-16">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">
+          6. Marco Regulatório
+        </h2>
+
+        <h3 class="text-xl font-bold text-gray-900 mb-4">
+          6.1 Cenário Regulatório Brasileiro
+        </h3>
+        <p class="text-gray-700 mb-6">
+          O Brasil possui um dos marcos regulatórios mais avançados globalmente
+          para tokenização, criando condições ideais para entrada no mercado:
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-6 mb-8">
+          <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+            <h4 class="font-bold text-blue-800 mb-3">
+              Marcos Regulatórios Chave
+            </h4>
+            <ul class="space-y-3 text-blue-700">
+              <li>
+                <strong>Resolução BCB 4734/2021:</strong>
+                <span class="block text-sm"
+                  >Registro obrigatório de recebíveis, garantindo
+                  rastreabilidade</span
+                >
+              </li>
+              <li>
+                <strong>Resolução CVM 88/22:</strong>
+                <span class="block text-sm"
+                  >Tokenização via crowdfunding até R$ 15 milhões</span
+                >
+              </li>
+              <li>
+                <strong>Lei 14.478/22 (VASPs):</strong>
+                <span class="block text-sm"
+                  >Regulamentação de prestadores de ativos virtuais</span
+                >
+              </li>
+              <li>
+                <strong>Marco Legal das Startups:</strong>
+                <span class="block text-sm"
+                  >Sandbox regulatório e benefícios para inovação</span
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+            <h4 class="font-bold text-green-800 mb-3">
+              Cronograma Implementação
+            </h4>
+            <div class="space-y-3 text-green-700">
+              <div class="flex justify-between">
+                <span class="font-medium">Q1 2025:</span>
+                <span class="text-sm">Regulamentação VASP final</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="font-medium">Q2 2025:</span>
+                <span class="text-sm">Lançamento DREX</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="font-medium">Q3 2025:</span>
+                <span class="text-sm">Licenciamento VASP</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="font-medium">Q4 2025:</span>
+                <span class="text-sm">Operação plena</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="text-xl font-bold text-gray-900 mb-4">
+          6.2 Estratégia de Compliance
+        </h3>
+        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-6 mb-8">
+          <h4 class="font-bold text-yellow-800 mb-4">
+            Rota de Entrada: CVM 88/22
+          </h4>
+          <p class="text-yellow-800 mb-4">
+            A Resolução CVM 88/22 oferece o caminho mais prático para entrada no
+            mercado:
+          </p>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <h5 class="font-bold text-yellow-700 mb-2">Requisitos</h5>
+              <ul class="text-sm text-yellow-700 space-y-1">
+                <li>• Capital mínimo: R$ 100.000</li>
+                <li>• Incorporação brasileira</li>
+                <li>• Sistemas KYC/AML abrangentes</li>
+                <li>• Proteção ao investidor</li>
+                <li>• Auditoria anual</li>
+              </ul>
+            </div>
+            <div>
+              <h5 class="font-bold text-yellow-700 mb-2">Benefícios</h5>
+              <ul class="text-sm text-yellow-700 space-y-1">
+                <li>• Limite R$ 15M anuais por oferta</li>
+                <li>• Processo simplificado</li>
+                <li>• Tempo: 6-12 meses</li>
+                <li>• Custo: R$ 400K-1.2M</li>
+                <li>• Flexibilidade operacional</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="text-xl font-bold text-gray-900 mb-4">
+          6.3 Custos de Compliance
+        </h3>
+        <div class="overflow-x-auto mb-8">
+          <table class="w-full border-collapse border border-gray-300">
+            <thead class="bg-gray-50">
+              <tr>
+                <th class="border border-gray-300 px-4 py-3 text-left">Item</th>
+                <th class="border border-gray-300 px-4 py-3 text-left">
+                  Custo Inicial
+                </th>
+                <th class="border border-gray-300 px-4 py-3 text-left">
+                  Custo Anual
+                </th>
+                <th class="border border-gray-300 px-4 py-3 text-left">
+                  Descrição
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="border border-gray-300 px-4 py-3 font-medium">
+                  Registro CVM
+                </td>
+                <td class="border border-gray-300 px-4 py-3">R$ 200.000</td>
+                <td class="border border-gray-300 px-4 py-3">R$ 50.000</td>
+                <td class="border border-gray-300 px-4 py-3">
+                  Processo de registro e manutenção
+                </td>
+              </tr>
+              <tr class="bg-gray-50">
+                <td class="border border-gray-300 px-4 py-3 font-medium">
+                  Auditoria Legal
+                </td>
+                <td class="border border-gray-300 px-4 py-3">R$ 150.000</td>
+                <td class="border border-gray-300 px-4 py-3">R$ 100.000</td>
+                <td class="border border-gray-300 px-4 py-3">
+                  Compliance e auditoria externa
+                </td>
+              </tr>
+              <tr>
+                <td class="border border-gray-300 px-4 py-3 font-medium">
+                  Sistemas KYC/AML
+                </td>
+                <td class="border border-gray-300 px-4 py-3">R$ 100.000</td>
+                <td class="border border-gray-300 px-4 py-3">R$ 120.000</td>
+                <td class="border border-gray-300 px-4 py-3">
+                  Integração Serasa + monitoramento
+                </td>
+              </tr>
+              <tr class="bg-gray-50">
+                <td class="border border-gray-300 px-4 py-3 font-medium">
+                  Capital Mínimo
+                </td>
+                <td class="border border-gray-300 px-4 py-3">R$ 100.000</td>
+                <td class="border border-gray-300 px-4 py-3">-</td>
+                <td class="border border-gray-300 px-4 py-3">
+                  Exigência regulatória
+                </td>
+              </tr>
+              <tr>
+                <td class="border border-gray-300 px-4 py-3 font-medium">
+                  <strong>Total</strong>
+                </td>
+                <td class="border border-gray-300 px-4 py-3">
+                  <strong>R$ 550.000</strong>
+                </td>
+                <td class="border border-gray-300 px-4 py-3">
+                  <strong>R$ 270.000</strong>
+                </td>
+                <td class="border border-gray-300 px-4 py-3">-</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 7. Modelo de Negócio -->
+      <section id="modelo" class="section-anchor mb-16">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">
+          7. Modelo de Negócio
+        </h2>
+
+        <h3 class="text-xl font-bold text-gray-900 mb-4">
+          7.1 Estrutura de Receitas
+        </h3>
+        <div class="grid md:grid-cols-2 gap-6 mb-8">
+          <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+            <h4 class="font-bold text-blue-800 mb-4">
+              Receitas Principais (95%)
+            </h4>
+            <div class="space-y-4">
+              <div>
+                <div class="flex justify-between mb-2">
+                  <span class="font-medium">Taxa da PME (70%)</span>
+                  <span class="font-bold">2% do valor tokenizado</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                  <div
+                    class="bg-blue-600 h-2 rounded-full"
+                    style="width: 70%"
+                  ></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between mb-2">
+                  <span class="font-medium">Taxa do Investidor (20%)</span>
+                  <span class="font-bold">0,5% sobre ganho</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                  <div
+                    class="bg-green-600 h-2 rounded-full"
+                    style="width: 20%"
+                  ></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between mb-2">
+                  <span class="font-medium">Mercado Secundário (5%)</span>
+                  <span class="font-bold">0,3% por transação</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                  <div
+                    class="bg-purple-600 h-2 rounded-full"
+                    style="width: 5%"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+            <h4 class="font-bold text-green-800 mb-4">
+              Receitas Complementares (5%)
+            </h4>
+            <ul class="space-y-2 text-green-700">
+              <li>
+                • <strong>Plano Premium PME:</strong> R$ 500/mês para alto
+                volume
+              </li>
+              <li>
+                • <strong>Seguro de Inadimplência:</strong> R$ 50 por operação
+              </li>
+              <li>• <strong>Consultoria Financeira:</strong> R$ 200/hora</li>
+              <li>
+                • <strong>White Label:</strong> Soluções para bancos menores
+              </li>
+              <li>
+                • <strong>API Enterprise:</strong> Integrações personalizadas
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <h3 class="text-xl font-bold text-gray-900 mb-4">
+          7.2 Vantagem Competitiva Sustentável
+        </h3>
+        <div class="bg-purple-50 border border-purple-200 rounded-lg p-6 mb-8">
+          <h4 class="font-bold text-purple-800 mb-4">Efeito de Rede</h4>
+          <p class="text-purple-700 mb-4">
+            A RecToken constrói vantagem competitiva através do efeito de rede:
+          </p>
+          <div class="grid md:grid-cols-3 gap-4">
+            <div class="text-center">
+              <div
+                class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-2"
+              >
+                <span class="text-white font-bold">1</span>
+              </div>
+              <h5 class="font-bold text-purple-800 mb-1">Mais PMEs</h5>
+              <p class="text-sm text-purple-700">Atraem mais investidores</p>
+            </div>
+            <div class="text-center">
+              <div
+                class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-2"
+              >
+                <span class="text-white font-bold">2</span>
+              </div>
+              <h5 class="font-bold text-purple-800 mb-1">Mais Investidores</h5>
+              <p class="text-sm text-purple-700">Reduzem custos para PMEs</p>
+            </div>
+            <div class="text-center">
+              <div
+                class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-2"
+              >
+                <span class="text-white font-bold">3</span>
+              </div>
+              <h5 class="font-bold text-purple-800 mb-1">Mais Volume</h5>
+              <p class="text-sm text-purple-700">Melhora algoritmo IA</p>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="text-xl font-bold text-gray-900 mb-4">
+          7.3 Estrutura de Custos
+        </h3>
+        <div class="grid md:grid-cols-2 gap-6 mb-8">
+          <div>
+            <h4 class="font-bold text-gray-800 mb-3">Custos Variáveis (30%)</h4>
+            <ul class="space-y-2 text-gray-700">
+              <li>
+                • <strong>Transações Blockchain:</strong> $0,001 por operação
+              </li>
+              <li>• <strong>KYC/Verificações:</strong> R$ 2-15 por consulta</li>
+              <li>• <strong>PIX/Transferências:</strong> 0,2% do volume</li>
+              <li>• <strong>Suporte ao Cliente:</strong> R$ 50 por ticket</li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="font-bold text-gray-800 mb-3">Custos Fixos (70%)</h4>
+            <ul class="space-y-2 text-gray-700">
+              <li>• <strong>Equipe Técnica:</strong> R$ 150K/mês</li>
+              <li>• <strong>Infraestrutura Cloud:</strong> R$ 25K/mês</li>
+              <li>• <strong>Compliance/Legal:</strong> R$ 40K/mês</li>
+              <li>• <strong>Marketing:</strong> R$ 80K/mês</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. Projeções Financeiras -->
+      <section id="financeiro" class="section-anchor mb-16">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">
+          8. Projeções Financeiras
+        </h2>
+
+        <h3 class="text-xl font-bold text-gray-900 mb-4">
+          8.1 Projeções Trienais
+        </h3>
+        <div class="overflow-x-auto mb-8">
+          <table class="w-full border-collapse border border-gray-300">
+            <thead class="bg-gray-50">
+              <tr>
+                <th class="border border-gray-300 px-4 py-3 text-left">
+                  Métrica
+                </th>
+                <th class="border border-gray-300 px-4 py-3 text-left">
+                  Ano 1
+                </th>
+                <th class="border border-gray-300 px-4 py-3 text-left">
+                  Ano 2
+                </th>
+                <th class="border border-gray-300 px-4 py-3 text-left">
+                  Ano 3
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="border border-gray-300 px-4 py-3 font-medium">
+                  Volume Tokenizado
+                </td>
+                <td class="border border-gray-300 px-4 py-3">R$ 50 milhões</td>
+                <td class="border border-gray-300 px-4 py-3">R$ 300 milhões</td>
+                <td class="border border-gray-300 px-4 py-3">R$ 1 bilhão</td>
+              </tr>
+              <tr class="bg-gray-50">
+                <td class="border border-gray-300 px-4 py-3 font-medium">
+                  PMEs Ativas
+                </td>
+                <td class="border border-gray-300 px-4 py-3">250</td>
+                <td class="border border-gray-300 px-4 py-3">1.500</td>
+                <td class="border border-gray-300 px-4 py-3">5.000</td>
+              </tr>
+              <tr>
+                <td class="border border-gray-300 px-4 py-3 font-medium">
+                  Investidores Ativos
+                </td>
+                <td class="border border-gray-300 px-4 py-3">2.500</td>
+                <td class="border border-gray-300 px-4 py-3">15.000</td>
+                <td class="border border-gray-300 px-4 py-3">50.000</td>
+              </tr>
+              <tr class="bg-gray-50">
+                <td class="border border-gray-300 px-4 py-3 font-medium">
+                  Receita Bruta
+                </td>
+                <td class="border border-gray-300 px-4 py-3">
+                  R$ 1,25 milhões
+                </td>
+                <td class="border border-gray-300 px-4 py-3">R$ 7,5 milhões</td>
+                <td class="border border-gray-300 px-4 py-3">R$ 25 milhões</td>
+              </tr>
+              <tr>
+                <td class="border border-gray-300 px-4 py-3 font-medium">
+                  Custos Operacionais
+                </td>
+                <td class="border border-gray-300 px-4 py-3">R$ 3,6 milhões</td>
+                <td class="border border-gray-300 px-4 py-3">R$ 6,2 milhões</td>
+                <td class="border border-gray-300 px-4 py-3">R$ 8 milhões</td>
+              </tr>
+              <tr class="bg-gray-50">
+                <td class="border border-gray-300 px-4 py-3 font-medium">
+                  EBITDA
+                </td>
+                <td class="border border-gray-300 px-4 py-3 text-red-600">
+                  -R$ 2,35 milhões
+                </td>
+                <td class="border border-gray-300 px-4 py-3 text-green-600">
+                  R$ 1,3 milhões
+                </td>
+                <td class="border border-gray-300 px-4 py-3 text-green-600">
+                  R$ 17 milhões
+                </td>
+              </tr>
+              <tr>
+                <td class="border border-gray-300 px-4 py-3 font-medium">
+                  Margem EBITDA
+                </td>
+                <td class="border border-gray-300 px-4 py-3 text-red-600">
+                  -188%
+                </td>
+                <td class="border border-gray-300 px-4 py-3 text-green-600">
+                  17%
+                </td>
+                <td class="border border-gray-300 px-4 py-3 text-green-600">
+                  68%
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="text-xl font-bold text-gray-900 mb-4">
+          8.2 Break-even e Marcos Financeiros
+        </h3>
+        <div class="grid md:grid-cols-3 gap-6 mb-8">
+          <div
+            class="bg-red-50 border border-red-200 rounded-lg p-6 text-center"
+          >
+            <h4 class="font-bold text-red-800 mb-2">Break-even</h4>
+            <div class="text-3xl font-bold text-red-600 mb-2">Mês 18</div>
+            <p class="text-sm text-red-700">R$ 228M tokenizados necessários</p>
+          </div>
+
+          <div
+            class="bg-yellow-50 border border-yellow-200 rounded-lg p-6 text-center"
+          >
+            <h4 class="font-bold text-yellow-800 mb-2">Cash Flow Positivo</h4>
+            <div class="text-3xl font-bold text-yellow-600 mb-2">Mês 24</div>
+            <p class="text-sm text-yellow-700">Sustentabilidade operacional</p>
+          </div>
+
+          <div
+            class="bg-green-50 border border-green-200 rounded-lg p-6 text-center"
+          >
+            <h4 class="font-bold text-green-800 mb-2">Lucratividade</h4>
+            <div class="text-3xl font-bold text-green-600 mb-2">68%</div>
+            <p class="text-sm text-green-700">Margem EBITDA no Ano 3</p>
+          </div>
+        </div>
+
+        <h3 class="text-xl font-bold text-gray-900 mb-4">
+          8.3 Sensibilidade e Cenários
+        </h3>
+        <div class="overflow-x-auto mb-8">
+          <table class="w-full border-collapse border border-gray-300">
+            <thead class="bg-gray-50">
+              <tr>
+                <th class="border border-gray-300 px-4 py-3 text-left">
+                  Cenário
+                </th>
+                <th class="border border-gray-300 px-4 py-3 text-left">
+                  Volume Ano 3
+                </th>
+                <th class="border border-gray-300 px-4 py-3 text-left">
+                  Receita Ano 3
+                </th>
+                <th class="border border-gray-300 px-4 py-3 text-left">
+                  EBITDA Ano 3
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="bg-red-50">
+                <td class="border border-gray-300 px-4 py-3 font-medium">
+                  Pessimista (20% abaixo)
+                </td>
+                <td class="border border-gray-300 px-4 py-3">R$ 800 milhões</td>
+                <td class="border border-gray-300 px-4 py-3">R$ 20 milhões</td>
+                <td class="border border-gray-300 px-4 py-3">R$ 12 milhões</td>
+              </tr>
+              <tr class="bg-blue-50">
+                <td class="border border-gray-300 px-4 py-3 font-medium">
+                  Base (projeção atual)
+                </td>
+                <td class="border border-gray-300 px-4 py-3">R$ 1 bilhão</td>
+                <td class="border border-gray-300 px-4 py-3">R$ 25 milhões</td>
+                <td class="border border-gray-300 px-4 py-3">R$ 17 milhões</td>
+              </tr>
+              <tr class="bg-green-50">
+                <td class="border border-gray-300 px-4 py-3 font-medium">
+                  Otimista (30% acima)
+                </td>
+                <td class="border border-gray-300 px-4 py-3">R$ 1,3 bilhões</td>
+                <td class="border border-gray-300 px-4 py-3">
+                  R$ 32,5 milhões
+                </td>
+                <td class="border border-gray-300 px-4 py-3">
+                  R$ 24,5 milhões
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="text-xl font-bold text-gray-900 mb-4">
+          8.4 Necessidades de Investimento
+        </h3>
+        <div class="grid md:grid-cols-2 gap-6 mb-8">
+          <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+            <h4 class="font-bold text-blue-800 mb-4">
+              Rodadas de Investimento
+            </h4>
+            <div class="space-y-3">
+              <div>
+                <div class="flex justify-between mb-1">
+                  <span class="font-medium">Seed (Meses 1-6)</span>
+                  <span class="font-bold">R$ 2-3M</span>
+                </div>
+                <p class="text-sm text-blue-700">
+                  MVP, compliance inicial, equipe core
+                </p>
+              </div>
+
+              <div>
+                <div class="flex justify-between mb-1">
+                  <span class="font-medium">Series A (Meses 12-18)</span>
+                  <span class="font-bold">R$ 8-12M</span>
+                </div>
+                <p class="text-sm text-blue-700">
+                  Escala, marketing, expansão geográfica
+                </p>
+              </div>
+
+              <div>
+                <div class="flex justify-between mb-1">
+                  <span class="font-medium">Series B (Meses 24-30)</span>
+                  <span class="font-bold">R$ 20-30M</span>
+                </div>
+                <p class="text-sm text-blue-700">
+                  Produtos avançados, internacionalização
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+            <h4 class="font-bold text-green-800 mb-4">Use of Funds (Seed)</h4>
+            <div class="space-y-3">
+              <div class="flex justify-between">
+                <span>Desenvolvimento (40%)</span>
+                <span class="font-bold">R$ 1,2M</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Compliance (25%)</span>
+                <span class="font-bold">R$ 750K</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Operações (20%)</span>
+                <span class="font-bold">R$ 600K</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Marketing (10%)</span>
+                <span class="font-bold">R$ 300K</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Reserva (5%)</span>
+                <span class="font-bold">R$ 150K</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 9. Roadmap de Implementação -->
+      <section id="implementacao" class="section-anchor mb-16">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">
+          9. Roadmap de Implementação
+        </h2>
+
+        <h3 class="text-xl font-bold text-gray-900 mb-4">
+          9.1 Estratégia de Três Fases
+        </h3>
+        <div class="space-y-8 mb-8">
+          <!-- Fase 1 -->
+          <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+            <div class="flex items-center mb-4">
+              <div
+                class="w-12 h-12 bg-primary rounded-full flex items-center justify-center mr-4"
+              >
+                <span class="text-white font-bold text-lg">1</span>
+              </div>
+              <div>
+                <h4 class="text-xl font-bold text-primary">
+                  MVP Development (Meses 1-6)
+                </h4>
+                <p class="text-gray-600">Estruturação e validação do modelo</p>
+              </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <h5 class="font-bold text-blue-800 mb-2">Marcos Técnicos</h5>
+                <ul class="text-sm text-blue-700 space-y-1">
+                  <li>• Desenvolvimento smart contracts básicos</li>
+                  <li>• Integração PIX e Open Banking</li>
+                  <li>• Sistema KYC/AML automatizado</li>
+                  <li>• Dashboard PMEs e investidores</li>
+                  <li>• Algoritmo IA para credit scoring</li>
+                </ul>
+              </div>
+              <div>
+                <h5 class="font-bold text-blue-800 mb-2">
+                  Marcos Regulatórios
+                </h5>
+                <ul class="text-sm text-blue-700 space-y-1">
+                  <li>• Aplicação licença CVM crowdfunding</li>
+                  <li>• Estruturação compliance LGPD</li>
+                  <li>• Auditoria smart contracts</li>
+                  <li>• Participação sandbox CVM</li>
+                  <li>• 10 PMEs piloto validadas</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="mt-4 bg-white rounded-lg p-4">
+              <div class="flex justify-between items-center">
+                <span class="font-medium">Investimento:</span>
+                <span class="font-bold text-primary">R$ 2-3 milhões</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Fase 2 -->
+          <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+            <div class="flex items-center mb-4">
+              <div
+                class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center mr-4"
+              >
+                <span class="text-white font-bold text-lg">2</span>
+              </div>
+              <div>
+                <h4 class="text-xl font-bold text-green-700">
+                  Market Expansion (Meses 7-12)
+                </h4>
+                <p class="text-gray-600">Lançamento comercial e crescimento</p>
+              </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <h5 class="font-bold text-green-800 mb-2">
+                  Produtos e Tecnologia
+                </h5>
+                <ul class="text-sm text-green-700 space-y-1">
+                  <li>• Apps mobile nativas (iOS/Android)</li>
+                  <li>• Mercado secundário de tokens</li>
+                  <li>• APIs para integração ERP</li>
+                  <li>• Dashboard analytics avançado</li>
+                  <li>• Sistema de reputação PMEs</li>
+                </ul>
+              </div>
+              <div>
+                <h5 class="font-bold text-green-800 mb-2">Go-to-Market</h5>
+                <ul class="text-sm text-green-700 space-y-1">
+                  <li>• 100 PMEs ativas na plataforma</li>
+                  <li>• 2.500 investidores cadastrados</li>
+                  <li>• Parcerias com escritórios contábeis</li>
+                  <li>• Integração B3 Digital Assets</li>
+                  <li>• R$ 10 milhões tokenizados</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="mt-4 bg-white rounded-lg p-4">
+              <div class="flex justify-between items-center">
+                <span class="font-medium">Investimento:</span>
+                <span class="font-bold text-green-600">R$ 8-12 milhões</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Fase 3 -->
+          <div class="bg-purple-50 border border-purple-200 rounded-lg p-6">
+            <div class="flex items-center mb-4">
+              <div
+                class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center mr-4"
+              >
+                <span class="text-white font-bold text-lg">3</span>
+              </div>
+              <div>
+                <h4 class="text-xl font-bold text-purple-700">
+                  Scale Operations (Ano 2+)
+                </h4>
+                <p class="text-gray-600">Consolidação e expansão</p>
+              </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <h5 class="font-bold text-purple-800 mb-2">
+                  Produtos Avançados
+                </h5>
+                <ul class="text-sm text-purple-700 space-y-1">
+                  <li>• Integração DREX completa</li>
+                  <li>• Tokenização supply chain finance</li>
+                  <li>• Produtos estruturados</li>
+                  <li>• Marketplace internacional</li>
+                  <li>• Derivativos e hedge</li>
+                </ul>
+              </div>
+              <div>
+                <h5 class="font-bold text-purple-800 mb-2">Expansão</h5>
+                <ul class="text-sm text-purple-700 space-y-1">
+                  <li>• 5.000 PMEs ativas</li>
+                  <li>• 50.000 investidores</li>
+                  <li>• Investidores institucionais</li>
+                  <li>• Expansão México/Colômbia</li>
+                  <li>• R$ 1 bilhão tokenizado</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="mt-4 bg-white rounded-lg p-4">
+              <div class="flex justify-between items-center">
+                <span class="font-medium">Investimento:</span>
+                <span class="font-bold text-purple-600">R$ 20-30 milhões</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="text-xl font-bold text-gray-900 mb-4">
+          9.2 Parcerias Estratégicas
+        </h3>
+        <div class="grid md:grid-cols-2 gap-6 mb-8">
+          <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+            <h4 class="font-bold text-blue-800 mb-4">Parcerias Tecnológicas</h4>
+            <ul class="space-y-3 text-blue-700">
+              <li>
+                <strong>B3 Digital Assets:</strong>
+                <span class="block text-sm"
+                  >Infraestrutura de tokenização e custódia 24/7</span
+                >
+              </li>
+              <li>
+                <strong>Polygon Brasil:</strong>
+                <span class="block text-sm"
+                  >Blockchain eficiente e suporte técnico local</span
+                >
+              </li>
+              <li>
+                <strong>Serasa Experian:</strong>
+                <span class="block text-sm">KYC/AML e análise de crédito</span>
+              </li>
+              <li>
+                <strong>AWS Brasil:</strong>
+                <span class="block text-sm"
+                  >Infraestrutura cloud e compliance</span
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+            <h4 class="font-bold text-green-800 mb-4">
+              Parcerias de Distribuição
+            </h4>
+            <ul class="space-y-3 text-green-700">
+              <li>
+                <strong>Escritórios Contábeis:</strong>
+                <span class="block text-sm"
+                  >Acesso direto a PMEs e construção de confiança</span
+                >
+              </li>
+              <li>
+                <strong>ERPs (TOTVS, Omie):</strong>
+                <span class="block text-sm"
+                  >Integração nativa para detecção de recebíveis</span
+                >
+              </li>
+              <li>
+                <strong>Bancos Digitais:</strong>
+                <span class="block text-sm"
+                  >White label para produtos de antecipação</span
+                >
+              </li>
+              <li>
+                <strong>Gestoras de Patrimônio:</strong>
+                <span class="block text-sm"
+                  >Acesso a investidores qualificados</span
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <h3 class="text-xl font-bold text-gray-900 mb-4">
+          9.3 Fatores Críticos de Sucesso
+        </h3>
+        <div class="grid md:grid-cols-3 gap-6 mb-8">
+          <div
+            class="bg-red-50 border border-red-200 rounded-lg p-6 text-center"
+          >
+            <div class="text-3xl mb-3">⚖️</div>
+            <h4 class="font-bold text-red-800 mb-2">Excelência Regulatória</h4>
+            <p class="text-sm text-red-700">
+              Compliance proativo e relacionamento próximo com reguladores
+            </p>
+          </div>
+
+          <div
+            class="bg-blue-50 border border-blue-200 rounded-lg p-6 text-center"
+          >
+            <div class="text-3xl mb-3">🚀</div>
+            <h4 class="font-bold text-blue-800 mb-2">Liderança Tecnológica</h4>
+            <p class="text-sm text-blue-700">
+              Arquitetura escalável e experiência do usuário superior
+            </p>
+          </div>
+
+          <div
+            class="bg-green-50 border border-green-200 rounded-lg p-6 text-center"
+          >
+            <div class="text-3xl mb-3">🤝</div>
+            <h4 class="font-bold text-green-800 mb-2">
+              Ecossistema de Parcerias
+            </h4>
+            <p class="text-sm text-green-700">
+              Network forte para distribuição e credibilidade
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. Conclusão -->
+      <section id="conclusao" class="section-anchor mb-16">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">10. Conclusão</h2>
+
+        <div class="bg-primary text-white rounded-lg p-8 mb-8">
+          <h3 class="text-2xl font-bold mb-4">
+            Uma Oportunidade Única no Tempo
+          </h3>
+          <p class="text-blue-100 mb-6">
+            A RecToken está posicionada para capitalizar um momento histórico
+            único no Brasil: a convergência de uma demanda massiva não atendida
+            (R$ 600 bilhões), um ambiente regulatório progressivo e uma
+            infraestrutura tecnológica madura.
+          </p>
+
+          <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-white/10 rounded-lg p-4">
+              <h4 class="font-bold mb-2">Timing Perfeito</h4>
+              <p class="text-sm text-blue-100">
+                Regulamentação em consolidação, DREX chegando, competição
+                limitada
+              </p>
+            </div>
+            <div class="bg-white/10 rounded-lg p-4">
+              <h4 class="font-bold mb-2">Mercado Provado</h4>
+              <p class="text-sm text-blue-100">
+                Factoring de R$ 93B anuais valida demanda, mas com ineficiências
+                claras
+              </p>
+            </div>
+            <div class="bg-white/10 rounded-lg p-4">
+              <h4 class="font-bold mb-2">Solução Superior</h4>
+              <p class="text-sm text-blue-100">
+                Blockchain oferece transparência, eficiência e liquidez inéditas
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="text-xl font-bold text-gray-900 mb-4">
+          Principais Vantagens Competitivas
+        </h3>
+        <div class="grid md:grid-cols-2 gap-6 mb-8">
+          <div>
+            <h4 class="font-bold text-gray-800 mb-3">Estruturais</h4>
+            <ul class="space-y-2 text-gray-700">
+              <li>
+                • <strong>First-mover advantage</strong> em tokenização nativa
+                de recebíveis
+              </li>
+              <li>
+                • <strong>Efeito de rede</strong> cria barreira de entrada
+                crescente
+              </li>
+              <li>
+                • <strong>Compliance avançado</strong> vs players internacionais
+              </li>
+              <li>
+                • <strong>Integração nativa</strong> com infraestrutura
+                brasileira
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="font-bold text-gray-800 mb-3">Operacionais</h4>
+            <ul class="space-y-2 text-gray-700">
+              <li>
+                • <strong>Custos 50-70% menores</strong> que factoring
+                tradicional
+              </li>
+              <li>
+                • <strong>Velocidade 10x superior</strong> (24h vs 15 dias)
+              </li>
+              <li>
+                • <strong>Democratização</strong> com ticket mínimo R$ 100
+              </li>
+              <li>• <strong>Transparência total</strong> via blockchain</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3 class="text-xl font-bold text-gray-900 mb-4">
+          Potencial de Retorno
+        </h3>
+        <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-8">
+          <h4 class="font-bold text-green-800 mb-4">
+            Múltiplos de Exit Conservadores
+          </h4>
+          <div class="grid md:grid-cols-3 gap-6">
+            <div class="text-center">
+              <div class="text-2xl font-bold text-green-600 mb-1">8-15x</div>
+              <p class="text-sm text-green-700">Fintechs de crédito</p>
+            </div>
+            <div class="text-center">
+              <div class="text-2xl font-bold text-green-600 mb-1">10-20x</div>
+              <p class="text-sm text-green-700">Plataformas financeiras</p>
+            </div>
+            <div class="text-center">
+              <div class="text-2xl font-bold text-green-600 mb-1">
+                R$ 250-500M
+              </div>
+              <p class="text-sm text-green-700">Valuation estimado Ano 5</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border-l-4 border-primary p-6 mb-8">
+          <h4 class="font-bold text-primary mb-3">Chamada à Ação</h4>
+          <p class="text-gray-700 mb-4">
+            A janela de oportunidade para liderar o mercado brasileiro de
+            tokenização de recebíveis está aberta, mas é limitada. A chegada do
+            DREX, a consolidação regulatória e o interesse crescente de players
+            internacionais tornam 2025 o ano crítico para estabelecer posição
+            dominante.
+          </p>
+
+          <p class="text-gray-700 font-medium">
+            A RecToken não é apenas uma startup fintech – é a porta de entrada
+            para o futuro da intermediação financeira no Brasil.
+          </p>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="text-center" id="download">
+          <div class="border-t border-gray-200 pt-8">
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">
+              Próximos Passos
+            </h3>
+            <p class="text-gray-600 mb-6">
+              Interessado em saber mais sobre a RecToken ou participar da nossa
+              jornada?
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <button
+                class="bg-primary text-white px-8 py-3 rounded-lg hover:bg-secondary transition-colors font-semibold"
+              >
+                📧 Contato para Investidores
+              </button>
+              <button
+                class="border-2 border-primary text-primary px-8 py-3 rounded-lg hover:bg-primary hover:text-white transition-colors font-semibold"
+              >
+                📄 Download PDF Completo
+              </button>
+            </div>
+
+            <p class="text-sm text-gray-500 mt-4">
+              contato@rectoken.com.br • +55 11 99999-9999 • São Paulo, SP
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="no-print bg-dark text-white py-8">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="flex items-center justify-center space-x-3 mb-4">
+          <div
+            class="w-8 h-8 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center"
+          >
+            <svg
+              class="w-5 h-5 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 10V3L4 14h7v7l9-11h-7z"
+              ></path>
+            </svg>
+          </div>
+          <span class="text-xl font-bold">RecToken</span>
+        </div>
+        <p class="text-gray-400 text-sm">
+          © 2025 RecToken. Todos os direitos reservados. Regulamentado pela CVM.
+        </p>
+        <p class="text-gray-500 text-xs mt-2">
+          Este whitepaper contém projeções e estimativas que podem não se
+          materializar. Investimentos envolvem riscos.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+      // Smooth scrolling para navegação
+      document.addEventListener("DOMContentLoaded", function () {
+        // Smooth scroll para links internos
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute("href"));
+            if (target) {
+              target.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            }
+          });
+        });
+
+        // Destacar seção ativa no TOC
+        const sections = document.querySelectorAll("section[id]");
+        const tocLinks = document.querySelectorAll(".toc-item");
+
+        window.addEventListener("scroll", () => {
+          let current = "";
+          sections.forEach((section) => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (window.pageYOffset >= sectionTop - 200) {
+              current = section.getAttribute("id");
+            }
+          });
+
+          tocLinks.forEach((link) => {
+            link.classList.remove("bg-blue-100", "border-blue-300");
+            if (link.getAttribute("href") === `#${current}`) {
+              link.classList.add("bg-blue-100", "border-blue-300");
+            }
+          });
+        });
+
+        // Animação de entrada para seções
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: "0px 0px -50px 0px",
+        };
+
+        const observer = new IntersectionObserver(function (entries) {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = "1";
+              entry.target.style.transform = "translateY(0)";
+            }
+          });
+        }, observerOptions);
+
+        sections.forEach((section) => {
+          section.style.opacity = "0";
+          section.style.transform = "translateY(20px)";
+          section.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+          observer.observe(section);
+        });
+      });
+
+      // Função para print otimizado
+      function optimizedPrint() {
+        window.print();
+      }
+
+      // Adicionar funcionalidade aos botões de ação
+      document.addEventListener("DOMContentLoaded", function () {
+        // Simular download PDF
+        const downloadButtons = document.querySelectorAll(
+          'button:contains("Download")'
+        );
+        downloadButtons.forEach((button) => {
+          if (button.textContent.includes("Download")) {
+            button.addEventListener("click", function () {
+              alert(
+                "Em breve: Download do PDF completo do whitepaper será disponibilizado."
+              );
+            });
+          }
+        });
+
+        // Simular contato investidores
+        const contactButtons = document.querySelectorAll(
+          'button:contains("Contato")'
+        );
+        contactButtons.forEach((button) => {
+          if (button.textContent.includes("Contato")) {
+            button.addEventListener("click", function () {
+              window.location.href =
+                "mailto:contato@rectoken.com.br?subject=Interesse em Investimento - RecToken";
+            });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
